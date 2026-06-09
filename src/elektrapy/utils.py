@@ -9,7 +9,7 @@ import plotly
 import plotly.graph_objects as go
 import plotly.express as px
 
-from biogeosankey import PATHWAY_NODES_MAP
+from elektrapy import PATHWAY_NODES_MAP
 
 
 def load_bigecyhmm_results(bigec_dir: str) -> pd.DataFrame:
