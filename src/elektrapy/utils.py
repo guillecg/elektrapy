@@ -12,41 +12,6 @@ import plotly.express as px
 from elektrapy import PATHWAY_NODES_MAP
 
 
-def process_bigecyhmm(path: str) -> pd.DataFrame:
-
-    network_df = load_bigecyhmm_results(path)
-
-    # Add cycle
-    network_df["cycle"] = network_df["pathway"]\
-        .str.split("-")\
-        .str[0]\
-        .map({
-            "C": "carbon",
-            "N": "nitrogen",
-            "O": "other",
-            "S": "sulfur"
-        })
-
-    # Add sources and targets (i.e. substrates and products)
-    network_df[["source", "target"]] = network_df["pathway"]\
-        .replace(PATHWAY_NODES_MAP)\
-        .str.split(" -> ", expand=True)
-
-    # Drop pathways without sources or targets (i.e. not mapped)
-    network_df = network_df.dropna(subset="source")
-    network_df = network_df.dropna(subset="target")
-
-    # Explode multiple sources (e.g. methanogenesis)
-    network_df["source"] = network_df["source"].str.split(";")
-    network_df = network_df.explode("source")
-
-    # Explode multiple targets (e.g. from disproportionation)
-    network_df["target"] = network_df["target"].str.split(";")
-    network_df = network_df.explode("target")
-
-    return network_df
-
-
 def get_colors(
     points: list,
     colorscale: str = "Sunset_r"
