@@ -12,28 +12,6 @@ import plotly.express as px
 from elektrapy import PATHWAY_NODES_MAP
 
 
-def load_bigecyhmm_results(bigec_dir: str) -> pd.DataFrame:
-
-    bigec_pattern = ".R_input.txt"
-    glob_pattern = os.path.join(
-        bigec_dir,
-        f"diagram_input/*{bigec_pattern}"
-    )
-
-    bigec_df = []
-
-    for filename in glob.glob(glob_pattern):
-        genome_id = os.path.basename(filename).replace(bigec_pattern, "")
-        genome_df = pd.read_table(
-            filename,
-            names=["pathway", "count"]
-        )
-        genome_df["genome_id"] = genome_id
-        bigec_df.append(genome_df)
-
-    return pd.concat(bigec_df)
-
-
 def process_bigecyhmm(path: str) -> pd.DataFrame:
 
     network_df = load_bigecyhmm_results(path)
