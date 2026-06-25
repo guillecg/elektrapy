@@ -1,6 +1,5 @@
 
 PATHWAY_NODES_MAP = {
-    # TODO: check for "Aerobic respiration: O2 -> H2O"
     "C-S-01:Organic carbon oxidation": "organic carbon -> CO2",
     "C-S-02:Carbon fixation": "CO2 -> organic carbon",
     "C-S-03:Ethanol oxidation": "ethanol -> CO2",
@@ -26,6 +25,7 @@ PATHWAY_NODES_MAP = {
     "O-S-03:Arsenate reduction": "AsO4 -> AsO3",
     "O-S-04:Arsenite oxidation": "AsO3 -> AsO4",
     "O-S-05:Selenate reduction": "SeO4 -> Se0",
+    "O-S-06:Aerobic respiration": "O2 -> H2O",
     "S-S-01:Sulfide oxidation": "H2S -> S0",
     "S-S-02:Sulfur reduction": "S0 -> H2S",
     "S-S-03:Sulfur oxidation": "S0 -> SO3",
