@@ -100,3 +100,23 @@ ENV_COLS = [
     "Si",
     "δ18O"
 ]
+
+RISK_PATHWAYS = [
+    "N-S-01:Nitrogen fixation",
+    "N-S-04:Nitrate reduction",
+    "N-S-05:Nitrite reduction",
+    "S-S-02:Sulfur reduction",
+    "S-S-05:Sulfate reduction",
+    "S-S-06:Sulfite reduction",
+    "S-S-07:Thiosulfate oxidation",
+    "S-S-08:Thiosulfate disproportionation 1",
+    "S-S-09:Thiosulfate disproportionation 2",
+    # "S-S-10:Polysulfide reduction",
+    "C-S-02:Carbon fixation",
+    "C-S-07:Methanogenesis",
+    "C-S-09:Hydrogen oxidation",
+    "C-S-10:Acetogenesis WL",
+    "O-S-01:Iron reduction",
+    "O-S-03:Arsenate reduction",
+    # "O-S-06:Aerobic respiration"
+]
