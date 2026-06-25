@@ -37,3 +37,17 @@ PATHWAY_NODES_MAP = {
     "S-S-09:Thiosulfate disproportionation 2": "S2O3 -> SO3;H2S",
     # "S-S-10:Polysulfide reduction": "" # Not used
 }
+
+ID_COLS = [
+    "dataset",
+    "sample_id",
+    "location",
+    "sublocation",
+    "country",
+    "latitude",
+    "longitude",
+    "elevation",
+    "depth",
+    "type",
+    "lithology"
+]
