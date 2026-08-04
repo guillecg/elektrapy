@@ -18,6 +18,27 @@ def preprocess_data(
 
     df = df.rename(columns={fn_var: "pathway"})
 
+    df = _get_presence(df)
+
+    return df
+
+
+def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Auxiliary function for grouping the results and getting the presence or 
+    absence dataframe.
+    """
+
+    # Transpose to get genomes (index) per function (columns)
+    df = df\
+        .set_index("pathway").T\
+        .reset_index()\
+        .rename(columns={"index": "genome_id"})\
+        .set_index("genome_id")
+
+    # Convert to presence/absence
+    df[df > 1] = 1
+
     return df
 
 
