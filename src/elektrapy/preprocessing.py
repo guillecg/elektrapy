@@ -18,12 +18,18 @@ def preprocess_data(
 
     df = df.rename(columns={fn_var: "pathway"})
 
-    df = _get_presence(df)
+    df = _get_presence(
+        df=df,
+        group_var=group_var
+    )
 
     return df
 
 
-def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
+def _get_presence(
+    df: pd.DataFrame,
+    group_var: str
+) -> pd.DataFrame:
     """
     Auxiliary function for grouping the results and getting the presence or 
     absence dataframe.
@@ -33,8 +39,7 @@ def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
     df = df\
         .set_index("pathway").T\
         .reset_index()\
-        .rename(columns={"index": "genome_id"})\
-        .set_index("genome_id")
+        .rename(columns={"index": group_var})
 
     # Convert to presence/absence
     df[df > 1] = 1
