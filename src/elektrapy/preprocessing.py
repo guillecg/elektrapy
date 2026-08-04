@@ -18,30 +18,36 @@ def preprocess_data(
 
     df = df.rename(columns={fn_var: "pathway"})
 
-    df = _get_presence(
+    df = _get_transposed(
         df=df,
         group_var=group_var
     )
 
+    df = _get_presence(df)
+
     return df
 
 
-def _get_presence(
+def _get_transposed(
     df: pd.DataFrame,
     group_var: str
 ) -> pd.DataFrame:
     """
-    Auxiliary function for grouping the results and getting the presence or 
-    absence dataframe.
+    Auxiliary function for transposing the original count dataframe to get 
+    genomes (index) per function (columns).
     """
-
-    # Transpose to get genomes (index) per function (columns)
-    df = df\
+    return df\
         .set_index("pathway").T\
         .reset_index()\
-        .rename(columns={"index": group_var})
+        .rename(columns={"index": group_var})\
+        .set_index(group_var)
 
-    # Convert to presence/absence
+
+def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Auxiliary function for getting the presence/absence dataframe.
+    """
+
     df[df > 1] = 1
 
     return df
