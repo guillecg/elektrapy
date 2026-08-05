@@ -94,7 +94,7 @@ def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def _get_nodes(df: pd.DataFrame) -> pd.DataFrame:
+def get_nodes(df: pd.DataFrame) -> pd.DataFrame:
     """
     Auxiliary function for parsing the results and getting both the source 
     and target nodes as well as their corresponding biogeochemical cycle.
