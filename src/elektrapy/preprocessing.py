@@ -18,7 +18,16 @@ def preprocess_data(
 
     df = df.rename(columns={fn_var: "pathway"})
 
-    df = _get_transposed(
+    df = _get_transposed(df=df)
+
+    if group_var == "sample_id":
+        assert len(mapping.values()), "[ERROR] Empty mapping."
+        df = _map_sample_genome(
+            df=df,
+            mapping=mapping
+        )
+
+    df = _get_grouped_counts(
         df=df,
         group_var=group_var
     )
@@ -28,10 +37,20 @@ def preprocess_data(
     return df
 
 
-def _get_transposed(
+def _map_sample_genome(
     df: pd.DataFrame,
-    group_var: str
+    mapping: dict
 ) -> pd.DataFrame:
+
+    df["sample_id"] = df["genome_id"].map(mapping)
+
+    # Drop genome_id column to avoid downstream errors
+    df = df.drop("genome_id", axis=1)
+
+    return df
+
+
+def _get_transposed(df: pd.DataFrame) -> pd.DataFrame:
     """
     Auxiliary function for transposing the original count dataframe to get 
     genomes (index) per function (columns).
