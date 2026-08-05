@@ -6,7 +6,8 @@ from elektrapy import PATHWAY_NODES_MAP
 def preprocess_data(
     df: pd.DataFrame,
     group_var: str,
-    fn_var: str = "function"
+    fn_var: str = "function",
+    mapping: dict = None
 ) -> pd.DataFrame:
     """
     Main function for preprocessing functional annotation data (bigecyhmm) 
