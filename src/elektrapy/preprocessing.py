@@ -48,6 +48,9 @@ def _map_sample_genome(
     df: pd.DataFrame,
     mapping: dict
 ) -> pd.DataFrame:
+    """
+    Auxiliary function for mapping genomes to their corresponding samples.
+    """
 
     df["sample_id"] = df["genome_id"].map(mapping)
 
@@ -72,6 +75,10 @@ def _get_grouped_counts(
     df: pd.DataFrame,
     group_var: str
 ) -> pd.DataFrame:
+    """
+    Auxiliary function for grouping the counts according to either genome or 
+    sample IDs.
+    """
     return df\
         .groupby(group_var, as_index=False)\
         .sum()
