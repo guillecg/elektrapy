@@ -16,6 +16,10 @@ def preprocess_data(
     assert len(df), "[ERROR] Empty dataframe."
     assert fn_var in df.columns, f"[ERROR] Missing column '{fn_var}'."
 
+    group_var_choices = ["genome_id", "sample_id"]
+    assert group_var in group_var_choices, \
+        f"[ERROR] Group var must be in {group_var_choices}"
+
     df = df.rename(columns={fn_var: "pathway"})
 
     df = _get_transposed(df=df)
