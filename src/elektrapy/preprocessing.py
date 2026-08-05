@@ -36,6 +36,8 @@ def preprocess_data(
         group_var=group_var
     )
 
+    # Set index to avoid errors while assigning presence/absence
+    df = df.set_index(group_var)
     df = _get_presence(df)
 
     return df
@@ -62,8 +64,16 @@ def _get_transposed(df: pd.DataFrame) -> pd.DataFrame:
     return df\
         .set_index("pathway").T\
         .reset_index()\
-        .rename(columns={"index": group_var})\
-        .set_index(group_var)
+        .rename(columns={"index": "genome_id"})
+
+
+def _get_grouped_counts(
+    df: pd.DataFrame,
+    group_var: str
+) -> pd.DataFrame:
+    return df\
+        .groupby(group_var, as_index=False)\
+        .sum()
 
 
 def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
