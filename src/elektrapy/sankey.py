@@ -9,7 +9,7 @@ import plotly
 import plotly.graph_objects as go
 import plotly.express as px
 
-from elektrapy import PATHWAY_NODES_MAP
+from elektrapy import PATHWAY_NODE_MAP
 
 
 def get_colors(
