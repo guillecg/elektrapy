@@ -53,7 +53,10 @@ def get_network_df(
     network_df = network_df[network_df["value"] >= 1]
 
     # Extract nodes from "pathway" column
-    network_df = _get_nodes(network_df)
+    network_df = _get_nodes_inferred(
+        network_df=network_df,
+        group_var=group_var
+    )
 
     return network_df
 
@@ -161,22 +164,22 @@ def _get_nodes_inferred(
 
     network_df_infer = []
 
-    for genome_id in network_df["genome_id"].unique():
-        genome_df = network_df[network_df["genome_id"] == genome_id]
+    for record_id in network_df[group_var].unique():
+        group_df = network_df[network_df[group_var] == record_id].copy()
 
         redox_combinations = list(itertools.product(
-            genome_df[genome_df["node_type"] == "source"]["node"].unique(),
-            genome_df[genome_df["node_type"] == "target"]["node"].unique()
+            group_df[group_df["node_type"] == "source"]["node"].unique(),
+            group_df[group_df["node_type"] == "target"]["node"].unique()
         ))
-        genome_df = pd.DataFrame(
+        group_df = pd.DataFrame(
             redox_combinations,
             columns=["source", "target"]
         )
-        genome_df["genome_id"] = genome_id
-        genome_df["value"] = 1
+        group_df[group_var] = record_id
+        group_df["value"] = 1
 
         network_df_infer.append(
-            genome_df[["genome_id", "source", "target", "value"]]
+            group_df[[group_var, "source", "target", "value"]]
         )
 
     return pd.concat(network_df_infer)
