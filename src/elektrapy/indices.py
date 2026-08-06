@@ -3,10 +3,6 @@ import pandas as pd
 from elektrapy import PATHWAY_NODES_MAP
 
 
-def get_aggregated_potential() -> pd.Series:
-    pass
-
-
 def get_redox_index(
     results_df: pd.DataFrame,
     group_var: str
@@ -112,3 +108,89 @@ def _get_nodes(df: pd.DataFrame) -> pd.DataFrame:
     df = df.explode("target")
 
     return df
+
+
+def get_aggregated_potential(
+    redox_df: pd.DataFrame,
+    rti_df: pd.DataFrame
+) -> pd.DataFrame:
+
+    # Manually add carbon fixation reference to avoid dropping it
+    redox_df.loc[
+        (redox_df["node_ox"] == "CO2") &
+        (redox_df["node_red"] == "organic carbon"),
+        "references"
+    ] = "TODO"
+
+    # Drop rows without references
+    redox_df = redox_df[~redox_df["references"].isnull()]
+
+    # Drop rows without potentials
+    redox_df = redox_df[~redox_df["std_red_potential_pH7"].isnull()]
+    redox_df["std_red_potential_pH7"] = redox_df["std_red_potential_pH7"]\
+        .astype(float)
+
+    # Filter by present nodes
+    redox_df = redox_df[
+        (redox_df["node_ox"].isin(rti_df["node"])) |
+        (redox_df["node_red"].isin(rti_df["node"]))
+    ]
+
+    # Manually remove reactions
+    redox_df = redox_df[
+        ~redox_df["node_red"].isin(["H2O2"])
+    ]
+
+    # Get oxidants as the node_ox for reactions with positive potentials
+    node_ox = redox_df[redox_df["std_red_potential_pH7"] > 0.0]
+
+    # Get reductants as the node_red for reactions with negative potentials
+    node_red = redox_df[redox_df["std_red_potential_pH7"] <= 0.0]
+
+    # ------------------------------------------------------------------------ #
+
+    # Assign missing reductants as the node_red with inverse positive potential
+    node_miss_ox = node_red[
+        ~node_red["node_ox"].isin(node_red["node_red"])
+    ][["node_ox", "std_red_potential_pH7"]]
+
+    node_miss_ox["std_red_potential_pH7"] = \
+        -0.25 * node_miss_ox["std_red_potential_pH7"]
+
+    # Assign missing oxidants as the node_ox with inverse negative potential
+    node_miss_red = node_ox[
+        ~node_ox["node_red"].isin(node_ox["node_ox"])
+    ][["node_red", "std_red_potential_pH7"]]
+
+    node_miss_red["std_red_potential_pH7"] = \
+        -0.25 * node_miss_red["std_red_potential_pH7"]
+
+    # ------------------------------------------------------------------------ #
+
+    node_ox = node_ox[["node_ox", "std_red_potential_pH7"]]\
+        .rename(columns={"node_ox": "node"})
+    node_red = node_red[["node_red", "std_red_potential_pH7"]]\
+        .rename(columns={"node_red": "node"})
+    node_miss_ox = node_miss_ox[["node_ox", "std_red_potential_pH7"]]\
+        .rename(columns={"node_ox": "node"})
+    node_miss_red = node_miss_red[["node_red", "std_red_potential_pH7"]]\
+        .rename(columns={"node_red": "node"})
+
+    redox_df = pd.concat([
+        node_ox,
+        node_red,
+        node_miss_ox,
+        node_miss_red
+    ])
+
+    # Calculate the potential as the mean across all considered reactions
+    redox_df = redox_df\
+        .groupby("node", as_index=False)\
+        .mean()\
+        .sort_values("std_red_potential_pH7")\
+        .rename(columns={"std_red_potential_pH7": "transformed_potential"})
+
+    # Filter by present nodes
+    redox_df = redox_df[redox_df["node"].isin(rti_df["node"])]
+
+    return redox_df
