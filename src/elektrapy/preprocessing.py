@@ -44,6 +44,25 @@ def preprocess_data(
     return df
 
 
+def get_network_df(
+    results_df: pd.DataFrame,
+    group_var: str
+) -> pd.DataFrame:
+
+    network_df = results_df\
+        .reset_index()\
+        .melt(id_vars=group_var)\
+        .sort_values(group_var)
+
+    # Drop pathways without presence
+    network_df = network_df[network_df["value"] == 1]
+
+    # Extract nodes from "pathway" column
+    network_df = _get_nodes(network_df)
+
+    return network_df
+
+
 def _map_sample_genome(
     df: pd.DataFrame,
     mapping: dict
@@ -129,24 +148,5 @@ def _get_nodes(network_df: pd.DataFrame) -> pd.DataFrame:
     # Explode multiple targets (e.g. from disproportionation)
     network_df["target"] = network_df["target"].str.split(";")
     network_df = network_df.explode("target")
-
-    return network_df
-
-
-def get_network_df(
-    results_df: pd.DataFrame,
-    group_var: str
-) -> pd.DataFrame:
-
-    network_df = results_df\
-        .reset_index()\
-        .melt(id_vars=group_var)\
-        .sort_values(group_var)
-
-    # Drop pathways without presence
-    network_df = network_df[network_df["value"] == 1]
-
-    # Extract nodes from "pathway" column
-    network_df = _get_nodes(network_df)
 
     return network_df
