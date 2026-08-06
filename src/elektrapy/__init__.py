@@ -1,5 +1,5 @@
 
-PATHWAY_NODES_MAP = {
+PATHWAY_NODE_MAP = {
     "C-S-01:Organic carbon oxidation": "organic carbon -> ETC",
     "C-S-02:Carbon fixation": "ETC -> CO2",
     "C-S-03:Ethanol oxidation": "ethanol -> ETC",

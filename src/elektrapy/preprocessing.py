@@ -1,6 +1,6 @@
 import pandas as pd
 
-from elektrapy import PATHWAY_NODES_MAP
+from elektrapy import PATHWAY_NODE_MAP
 
 
 def preprocess_data(
@@ -119,7 +119,7 @@ def _get_nodes(network_df: pd.DataFrame) -> pd.DataFrame:
 
     # Add sources and targets (i.e. substrates and products)
     network_df[["source", "target"]] = network_df["pathway"]\
-        .replace(PATHWAY_NODES_MAP)\
+        .replace(PATHWAY_NODE_MAP)\
         .str.split(" -> ", expand=True)
 
     # Drop pathways without sources or targets (i.e. not mapped)
