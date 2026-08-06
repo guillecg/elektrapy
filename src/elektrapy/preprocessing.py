@@ -167,21 +167,30 @@ def _get_nodes_inferred(
     network_df_infer = []
 
     for record_id in network_df[group_var].unique():
-        group_df = network_df[network_df[group_var] == record_id].copy()
+        record_df = network_df[network_df[group_var] == record_id].copy()
 
+        # Create node combinations (donor to acceptor)
         redox_combinations = list(itertools.product(
-            group_df[group_df["node_type"] == "source"]["node"].unique(),
-            group_df[group_df["node_type"] == "target"]["node"].unique()
+            record_df[record_df["node_type"] == "source"]["node"].unique(),
+            record_df[record_df["node_type"] == "target"]["node"].unique()
         ))
-        group_df = pd.DataFrame(
+
+        # Remove pairs with the same node
+        redox_combinations = [
+            pair for pair in redox_combinations
+            if pair[0] != pair[1]
+        ]
+
+        # Create entry for the given record
+        record_df = pd.DataFrame(
             redox_combinations,
             columns=["source", "target"]
         )
-        group_df[group_var] = record_id
-        group_df["value"] = 1
+        record_df[group_var] = record_id
+        record_df["value"] = 1
 
         network_df_infer.append(
-            group_df[[group_var, "source", "target", "value"]]
+            record_df[[group_var, "source", "target", "value"]]
         )
 
     return pd.concat(network_df_infer)
