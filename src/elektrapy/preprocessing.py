@@ -37,10 +37,6 @@ def preprocess_data(
         group_var=group_var
     )
 
-    # Set index to avoid errors while assigning presence/absence
-    df = df.set_index(group_var)
-    df = _get_presence(df)
-
     return df
 
 
@@ -50,12 +46,11 @@ def get_network_df(
 ) -> pd.DataFrame:
 
     network_df = results_df\
-        .reset_index()\
         .melt(id_vars=group_var)\
         .sort_values(group_var)
 
     # Drop pathways without presence
-    network_df = network_df[network_df["value"] == 1]
+    network_df = network_df[network_df["value"] >= 1]
 
     # Extract nodes from "pathway" column
     network_df = _get_nodes(network_df)
@@ -101,16 +96,6 @@ def _get_grouped_counts(
     return df\
         .groupby(group_var, as_index=False)\
         .sum()
-
-
-def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Auxiliary function for getting the presence/absence dataframe.
-    """
-
-    df[df > 1] = 1
-
-    return df
 
 
 def _get_nodes(network_df: pd.DataFrame) -> pd.DataFrame:
