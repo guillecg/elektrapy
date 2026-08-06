@@ -1,6 +1,7 @@
 import pandas as pd
 
 from elektrapy import PATHWAY_NODES_MAP
+from elektrapy.indices import _get_nodes
 
 
 def preprocess_data(
@@ -92,3 +93,22 @@ def _get_presence(df: pd.DataFrame) -> pd.DataFrame:
     df[df > 1] = 1
 
     return df
+
+
+def get_network_df(
+    results_df: pd.DataFrame,
+    group_var: str
+) -> pd.DataFrame:
+
+    network_df = results_df\
+        .reset_index()\
+        .melt(id_vars=group_var)\
+        .sort_values(group_var)
+
+    # Drop pathways without presence
+    network_df = network_df[network_df["value"] == 1]
+
+    # Extract nodes from "pathway" column
+    network_df = _get_nodes(network_df)
+
+    return network_df

@@ -3,16 +3,16 @@ import pandas as pd
 from elektrapy import PATHWAY_NODES_MAP
 
 
-def _get_nodes(df: pd.DataFrame) -> pd.DataFrame:
+def _get_nodes(network_df: pd.DataFrame) -> pd.DataFrame:
     """
-    Auxiliary function for parsing the results and getting both the source 
-    and target nodes as well as their corresponding biogeochemical cycle.
+    Auxiliary function for parsing the network dataframe and getting both the 
+    source and target nodes as well as their corresponding biogeochemical cycle.
     """
 
-    assert len(df), "[ERROR] Empty dataframe."
+    assert len(network_df), "[ERROR] Empty dataframe."
 
     # Add cycle
-    df["cycle"] = df["pathway"]\
+    network_df["cycle"] = network_df["pathway"]\
         .str.split("-")\
         .str[0]\
         .map({
@@ -23,40 +23,29 @@ def _get_nodes(df: pd.DataFrame) -> pd.DataFrame:
         })
 
     # Add sources and targets (i.e. substrates and products)
-    df[["source", "target"]] = df["pathway"]\
+    network_df[["source", "target"]] = network_df["pathway"]\
         .replace(PATHWAY_NODES_MAP)\
         .str.split(" -> ", expand=True)
 
     # Drop pathways without sources or targets (i.e. not mapped)
-    df = df.dropna(subset="source")
-    df = df.dropna(subset="target")
+    network_df = network_df.dropna(subset="source")
+    network_df = network_df.dropna(subset="target")
 
     # Explode multiple sources (e.g. methanogenesis)
-    df["source"] = df["source"].str.split(";")
-    df = df.explode("source")
+    network_df["source"] = network_df["source"].str.split(";")
+    network_df = network_df.explode("source")
 
     # Explode multiple targets (e.g. from disproportionation)
-    df["target"] = df["target"].str.split(";")
-    df = df.explode("target")
+    network_df["target"] = network_df["target"].str.split(";")
+    network_df = network_df.explode("target")
 
-    return df
+    return network_df
 
 
 def get_redox_index(
-    results_df: pd.DataFrame,
+    network_df: pd.DataFrame,
     group_var: str
 ) -> pd.DataFrame:
-
-    network_df = results_df\
-        .reset_index()\
-        .melt(id_vars=group_var)\
-        .sort_values(group_var)
-
-    # Drop pathways without presence
-    network_df = network_df[network_df["value"] == 1]
-
-    # Extract nodes from "pathway" column
-    network_df = _get_nodes(network_df)
 
     n_records = network_df[group_var].nunique()
 
