@@ -23,17 +23,17 @@ def get_redox_index(
     # Extract nodes from "pathway" column
     network_df = _get_nodes(network_df)
 
-    n_records = network_df["genome_id"].nunique()
+    n_records = network_df[group_var].nunique()
 
-    # Get number of times of source/target per genome
+    # Get number of times of source/target per ID (genome or sample)
     transform_dict = dict(value="sum")
 
     source_df = network_df\
-        .groupby(["genome_id", "source"], as_index=False, observed=True)\
+        .groupby([group_var, "source"], as_index=False, observed=True)\
         .agg(transform_dict)
 
     target_df = network_df\
-        .groupby(["genome_id", "target"], as_index=False, observed=True)\
+        .groupby([group_var, "target"], as_index=False, observed=True)\
         .agg(transform_dict)
 
     # Some nodes can appear more than once if they are in different pathways
@@ -43,7 +43,7 @@ def get_redox_index(
         "value"
     ] = 1
     target_df.loc[
-        source_df["value"] > 1,
+        target_df["value"] > 1,
         "value"
     ] = 1
 
