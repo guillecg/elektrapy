@@ -1,7 +1,5 @@
 import pandas as pd
 
-from elektrapy import PATHWAY_NODES_MAP
-
 
 def get_redox_index(
     network_df: pd.DataFrame,
