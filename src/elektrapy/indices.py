@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def get_nodes(df: pd.DataFrame) -> pd.DataFrame:
+def _get_nodes(df: pd.DataFrame) -> pd.DataFrame:
     """
     Auxiliary function for parsing the results and getting both the source 
     and target nodes as well as their corresponding biogeochemical cycle.
