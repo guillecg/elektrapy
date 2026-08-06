@@ -1,6 +1,6 @@
 import pandas as pd
 
-from elektrapy import PATHWAY_NODE_MAP
+from elektrapy import PATHWAY_NODE_MAP, PATHWAY_NODE_MAP_INFERRED
 
 
 def preprocess_data(
@@ -135,3 +135,48 @@ def _get_nodes(network_df: pd.DataFrame) -> pd.DataFrame:
     network_df = network_df.explode("target")
 
     return network_df
+
+
+def _get_nodes_inferred(
+    network_df: pd.DataFrame,
+    group_var: str
+) -> pd.DataFrame:
+    """
+    Auxiliary function for parsing the network dataframe and getting both the 
+    source and target nodes as well as their corresponding biogeochemical cycle.
+    The nodes are inferred according to the presence of oxidation and reduction
+    reactions.
+    """
+
+    assert len(network_df), "[ERROR] Empty dataframe."
+
+    network_df["node"] = network_df["pathway"].map(PATHWAY_NODE_MAP_INFERRED)
+    network_df[["node_type", "node"]] = network_df["node"]\
+        .str.split("-", expand=True)
+    network_df["node_type"] = network_df["node_type"].replace({
+        "oxidation": "source",
+        "reduction": "target",
+        "fixation": "target"
+    })
+
+    network_df_infer = []
+
+    for genome_id in network_df["genome_id"].unique():
+        genome_df = network_df[network_df["genome_id"] == genome_id]
+
+        redox_combinations = list(itertools.product(
+            genome_df[genome_df["node_type"] == "source"]["node"].unique(),
+            genome_df[genome_df["node_type"] == "target"]["node"].unique()
+        ))
+        genome_df = pd.DataFrame(
+            redox_combinations,
+            columns=["source", "target"]
+        )
+        genome_df["genome_id"] = genome_id
+        genome_df["value"] = 1
+
+        network_df_infer.append(
+            genome_df[["genome_id", "source", "target", "value"]]
+        )
+
+    return pd.concat(network_df_infer)
