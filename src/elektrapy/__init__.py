@@ -1,4 +1,3 @@
-
 PATHWAY_NODE_MAP = {
     "C-S-01:Organic carbon oxidation": "organic carbon -> ETC",
     "C-S-02:Carbon fixation": "ETC -> CO2",
@@ -36,6 +35,44 @@ PATHWAY_NODE_MAP = {
     "S-S-08:Thiosulfate disproportionation 1": "S2O3 -> S0",
     "S-S-09:Thiosulfate disproportionation 2": "S2O3 -> H2S",
     # "S-S-10:Polysulfide reduction": "" # Not used
+}
+
+PATHWAY_NODE_MAP_INFERRED = {
+    "C-S-01:Organic carbon oxidation": "oxidation-organic carbon",
+    "C-S-02:Carbon fixation": "fixation-CO2",
+    "C-S-03:Ethanol oxidation": "oxidation-ethanol",
+    "C-S-04:Acetate oxidation": "oxidation-acetate",
+    "C-S-05:Hydrogen generation": "reduction-H2",
+    "C-S-06:Fermentation": "reduction-H2",
+    "C-S-07:Methanogenesis": "oxidation-H2",
+    "C-S-08:Methanotrophy": "reduction-CH4",
+    "C-S-09:Hydrogen oxidation": "oxidation-H2",
+    "C-S-10:Acetogenesis WL": "oxidation-H2",
+    "N-S-01:Nitrogen fixation": "fixation-N2",
+    "N-S-02:Ammonia oxidation": "oxidation-NH4",
+    "N-S-03:Nitrite oxidation": "oxidation-NO2",
+    "N-S-04:Nitrate reduction": "reduction-NO3",
+    "N-S-05:Nitrite reduction": "reduction-NO2",
+    "N-S-06:Nitric oxide reduction": "reduction-NO",
+    "N-S-07:Nitrous oxide reduction": "reduction-N2O",
+    "N-S-08:Nitrite ammonification": "reduction-NO2",
+    "N-S-09:Anammox": "oxidation-NH4",
+    "N-S-10:Nitric oxide dismutase": "reduction-N2", # Disproportionation
+    "O-S-01:Iron reduction": "reduction-Fe3+",
+    "O-S-02:Iron oxidation": "oxidation-Fe2+",
+    "O-S-03:Arsenate reduction": "reduction-AsO4",
+    "O-S-04:Arsenite oxidation": "oxidation-AsO3",
+    "O-S-05:Selenate reduction": "reduction-SeO4",
+    "O-S-06:Aerobic respiration": "reduction-O2",
+    "S-S-01:Sulfide oxidation": "oxidation-H2S",
+    "S-S-02:Sulfur reduction": "reduction-S0",
+    "S-S-03:Sulfur oxidation": "oxidation-S0",
+    "S-S-04:Sulfite oxidation": "oxidation-SO3",
+    "S-S-05:Sulfate reduction": "reduction-SO4",
+    "S-S-06:Sulfite reduction": "reduction-SO3",
+    "S-S-07:Thiosulfate oxidation": "oxidation-S2O3",
+    "S-S-08:Thiosulfate disproportionation 1": "reduction-S0",
+    "S-S-09:Thiosulfate disproportionation 2": "reduction-H2S"
 }
 
 ID_COLS = [
