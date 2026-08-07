@@ -63,12 +63,17 @@ def get_aggregated_potential(
     rti_df: pd.DataFrame
 ) -> pd.DataFrame:
 
-    # Manually add carbon fixation reference to avoid dropping it
+    # Manually add references to avoid dropping nodes
     redox_df.loc[
         (redox_df["node_ox"] == "CO2") &
         (redox_df["node_red"] == "organic carbon"),
         "references"
-    ] = "TODO"
+    ] = "unknown"
+    redox_df.loc[
+        (redox_df["node_ox"] == "SeO4") &
+        (redox_df["node_red"] == "SeO3"),
+        "references"
+    ] = "unknown"
 
     # Drop rows without references
     redox_df = redox_df[~redox_df["references"].isnull()]
