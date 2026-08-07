@@ -71,8 +71,8 @@ PATHWAY_NODE_MAP_INFERRED = {
     "S-S-05:Sulfate reduction": "reduction-SO4",
     "S-S-06:Sulfite reduction": "reduction-SO3",
     "S-S-07:Thiosulfate oxidation": "oxidation-S2O3",
-    "S-S-08:Thiosulfate disproportionation 1": "reduction-S0",
-    "S-S-09:Thiosulfate disproportionation 2": "reduction-H2S"
+    "S-S-08:Thiosulfate disproportionation 1": "oxidation-S2O3",
+    "S-S-09:Thiosulfate disproportionation 2": "oxidation-S2O3"
 }
 
 ID_COLS = [
