@@ -45,7 +45,7 @@ PATHWAY_NODE_MAP_INFERRED = {
     "C-S-05:Hydrogen generation": "reduction-H2",
     "C-S-06:Fermentation": "reduction-H2",
     "C-S-07:Methanogenesis": "oxidation-H2",
-    "C-S-08:Methanotrophy": "reduction-CH4",
+    "C-S-08:Methanotrophy": "oxidation-CH4",
     "C-S-09:Hydrogen oxidation": "oxidation-H2",
     "C-S-10:Acetogenesis WL": "oxidation-H2",
     "N-S-01:Nitrogen fixation": "fixation-N2",
