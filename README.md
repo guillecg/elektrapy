@@ -12,3 +12,16 @@ An example presented at EBEC 2026 can be found in the [notebooks folder](noteboo
 
 Future releases of elektrapy will include its installation as a Python package.
 For its current usage, just the installation of the following Python packages is required: ```pandas, scikit-learn, plotly, networkx```
+
+
+
+# Citation
+
+The initial idea for visualizing electron flows in the environment was presented at Goldschmidt 2025, please cite as:
+
+Climent Gargallo, G., Barosa, B., Cordone, A., & Giovannelli, D. (2025). Closing the circuit: Mapping the fate of electrons in the environment. https://conf.goldschmidt.info/goldschmidt/2025/meetingapp.cgi/Paper/27629
+
+
+The version implemented in elektrapy differs substantially from that one and was presented at EBEC 2026, please cite as:
+
+Climent Gargallo, G., de Pins, B., Moracci, M., & Edlmann, K. (2026). Disentangling the biotic flow of electrons in the continental subsurface. DOI: TBD
