@@ -25,3 +25,9 @@ Climent Gargallo, G., Barosa, B., Cordone, A., & Giovannelli, D. (2025). Closing
 The version implemented in elektrapy differs substantially from that one and was presented at EBEC 2026, please cite as:
 
 Climent Gargallo, G., de Pins, B., Moracci, M., & Edlmann, K. (2026). Disentangling the biotic flow of electrons in the continental subsurface. DOI: TBD
+
+
+
+# References
+
+Belcour, A., Megy, L., Stephant, S., Michel, C., Rad, S., Bombach, P., Dopffel, N., De Jong, H., & Ropers, D. (2025). Predicting coarse-grained representations of biogeochemical cycles from metabarcoding data. Bioinformatics, 41(Supplement_1), i49–i57. https://doi.org/10.1093/bioinformatics/btaf230
