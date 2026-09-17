@@ -19,12 +19,17 @@ For its current usage, just the installation of the following Python packages is
 
 The initial idea for visualizing electron flows in the environment was presented at Goldschmidt 2025, please cite as:
 
-Climent Gargallo, G., Barosa, B., Cordone, A., & Giovannelli, D. (2025). Closing the circuit: Mapping the fate of electrons in the environment. https://conf.goldschmidt.info/goldschmidt/2025/meetingapp.cgi/Paper/27629
+Climent Gargallo, G., Barosa, B., Cordone, A., & Giovannelli, D. (2025). Closing the circuit: Mapping the fate of electrons in the environment. Goldschmidt2025 Abstracts. Goldschmidt2025. https://doi.org/10.7185/gold2025.27629
 
 
 The version implemented in elektrapy differs substantially from that one and was presented at EBEC 2026, please cite as:
 
-Climent Gargallo, G., de Pins, B., Moracci, M., & Edlmann, K. (2026). Disentangling the biotic flow of electrons in the continental subsurface. DOI: TBD
+Climent Gargallo, G., De Pins, B., Moracci, M., & Edlmann, K. (2026). Disentangling the biotic flow of electrons in the continental subsurface. EBEC 2026.
+
+
+The elektrapy package can be cited as:
+
+Climent Gargallo, G. (2026). elektrapy: A tool for the exploration of biotic electron flows in the environment (Version 0.1.0) [Computer software]. https://github.com/guillecg/elektrapy
 
 
 
