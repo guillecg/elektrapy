@@ -4,7 +4,7 @@ authors:
 - family-names: "Guillermo"
   given-names: "Climent Gargallo"
   orcid: "https://orcid.org/0000-0002-0127-7795"
-title: "elektrapy: a tool for the exploration of biotic electron flows in the environment."
+title: "elektrapy: a tool for the exploration of biotic electron flows in the environment"
 version: 0.1.0
 date-released: 2026-09-14
 url: "https://github.com/guillecg/elektrapy"
