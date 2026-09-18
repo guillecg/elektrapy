@@ -82,7 +82,7 @@ def get_efd(
 
     network_df[link_var] = network_df[color_var].map(link_color_map)
 
-    network_df = _modify_link_alpha(
+    network_df = _highlight_node(
         network_df=network_df,
         color_var=link_var,
         alpha=link_alpha,
