@@ -103,45 +103,6 @@ def _get_grouped_counts(
         .sum()
 
 
-def _get_nodes(network_df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Auxiliary function for parsing the network dataframe and getting both the 
-    source and target nodes as well as their corresponding biogeochemical cycle.
-    """
-
-    assert len(network_df), "[ERROR] Empty dataframe."
-
-    # Add cycle
-    network_df["cycle"] = network_df["pathway"]\
-        .str.split("-")\
-        .str[0]\
-        .map({
-            "C": "carbon",
-            "N": "nitrogen",
-            "O": "other",
-            "S": "sulfur"
-        })
-
-    # Add sources and targets (i.e. substrates and products)
-    network_df[["source", "target"]] = network_df["pathway"]\
-        .replace(PATHWAY_NODE_MAP)\
-        .str.split(" -> ", expand=True)
-
-    # Drop pathways without sources or targets (i.e. not mapped)
-    network_df = network_df.dropna(subset="source")
-    network_df = network_df.dropna(subset="target")
-
-    # Explode multiple sources (e.g. methanogenesis)
-    network_df["source"] = network_df["source"].str.split(";")
-    network_df = network_df.explode("source")
-
-    # Explode multiple targets (e.g. from disproportionation)
-    network_df["target"] = network_df["target"].str.split(";")
-    network_df = network_df.explode("target")
-
-    return network_df
-
-
 def _get_nodes_inferred(
     network_df: pd.DataFrame,
     group_var: str
