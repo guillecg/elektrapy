@@ -50,7 +50,6 @@ def get_node_df(
 def get_efd(
     network_df: pd.DataFrame,
     node_df: pd.DataFrame,
-    label_var: str,
     color_var: str,
     link_color_map: dict,
     cycle_color_map: dict = CYCLE_COLOR_MAP,
@@ -99,79 +98,91 @@ def get_efd(
             },
             orientation="h",
             arrangement="freeform",
-            # valuesuffix="genomes",
+
             node={
                 # NOTE: use categories here and in the link definition to avoid
                 # errors when creating the Sankey (interally sorts the nodes)
                 "label": node_df["node"].cat.categories,
-                # "x": [0.25, 0.45, 0.65, 0.85, 0.05],
-                # "y": [0.05, 0.30, 0.50, 0.75, 0.55],
+
+                "x": node_df["redox_index_minmax"].values.tolist(),
+                "y": node_df["transformed_potential_minmax"].values.tolist(),
                 "color": node_df["node_color"].values.tolist(),
-                "thickness": 20,
-                "pad": 10
+
+                "thickness": 10,
+                "pad": 20
             },
             link={
-                # HMM hits define enzymes present and, thus, substrates and products
+                "label": network_df[color_var].values.tolist(),
+
                 "source": network_df["source"].cat.codes.tolist(),
                 "target": network_df["target"].cat.codes.tolist(),
+                "color": network_df[link_var].values.tolist(),
 
                 # Define number of links by gene copy number and/or abundance
-                "value": network_df["count_perc"].values.tolist(),
-
-                # Color by chosen variable (sample, dataset, temperature, pH, etc.)
-                "color": network_df[f"link_color_{color_var}"].values.tolist(),
-                "label": network_df[label_var].values.tolist(),
+                "value": network_df["value"].values.tolist(),
 
                 "arrowlen": 15
             }
         )
     )
 
-    # # Create legends
-    # legend_dataset = [
-    #     go.Scatter(
-    #         mode="lines",
-    #         x=[None],
-    #         y=[None],
-    #         marker=dict(size=10, color=color, symbol="square"),
-    #         name=key,
-    #         legendgroup="color_var",
-    #         legendgrouptitle={
-    #             "text": f"{color_var.capitalize()} (links)"
-    #         }
-    #     )
-    #     for key, color in network_df[
-    #         [color_var, f"link_color_{color_var}"]
-    #     ].drop_duplicates().values
-    # ]
-    # for trace in legend_dataset:
-    #     fig.add_trace(trace)
+    # Create legends
+    legend_dataset = [
+        go.Scatter(
+            mode="lines",
+            x=[None],
+            y=[None],
+            marker=dict(size=10, color=color, symbol="square"),
+            name=key,
+            legendgroup="color_var",
+            legendgrouptitle={
+                "text": f"{color_var.capitalize()} (links)"
+            }
+        )
+        for key, color in link_color_map.items()
+    ]
+    legend_dataset.extend([
+        go.Scatter(
+            mode="markers",
+            x=[None],
+            y=[None],
+            marker=dict(size=10, color=color, symbol="square"),
+            name=key,
+            legendgroup="cycle",
+            legendgrouptitle={
+                "text": "Cycle (nodes)"
+            }
+        )
+        for key, color in cycle_color_map.items()
+    ])
+
+    for trace in legend_dataset:
+        fig.add_trace(trace)
 
     fig.update_layout(
-        title=f"Sankey diagram colored by {color_var}",
         width=1000,
         height=750,
         font=dict(
-            size=11,
+            size=15,
+            # weight="bold",
             family="Arial"
         ),
-        legend=dict(
-            yanchor="top",
-            # y=0.99,
-            xanchor="right",
-            # x=0.01
-        ),
-        paper_bgcolor="#f8f7f2",
-        plot_bgcolor="#f8f7f2"
+        paper_bgcolor="white",
+        plot_bgcolor="white"
     )
-    fig.update_xaxes(visible=False)
-    fig.update_yaxes(visible=False)
 
-    # Fix aspect ratio
-    # See: https://github.com/plotly/plotly.js/issues/4847#issuecomment-1500911948
-    fig.update_traces(
-        domain_y=list([0, 0.75]),
-        selector=dict(type="sankey")
+    # Change to true to plot the axes
+    fig.update_xaxes(
+        title="Redox Tendency Index (RTI)",
+        visible=True,
+        tickvals=[1, 0, -1],
+        range=[-1, 1]
+    )
+    fig.update_yaxes(
+        title="Mean Eº'",
+        visible=True,
+        tickvals=[-1, -0.5, 0, 0.5, 1, 1.3],
+        range=[1.3, -1.5]
     )
 
     return fig
