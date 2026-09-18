@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 from elektrapy import PATHWAY_NODE_MAP, CYCLE_COLOR_MAP
-from elektrapy.indices import get_redox_index, get_aggregated_potential
+from elektrapy.indices import get_redox_index, get_mean_potential
 
 
 def get_node_df(
@@ -26,7 +26,7 @@ def get_node_df(
     )
 
     # Y axis: the mean of the transformed Eº'
-    redox_df = get_aggregated_potential(
+    redox_df = get_mean_potential(
         redox_df=redox_df,
         rti_df=rti_df
     )

@@ -58,7 +58,7 @@ def get_redox_index(
     return rti_df
 
 
-def get_aggregated_potential(
+def get_mean_potential(
     redox_df: pd.DataFrame,
     rti_df: pd.DataFrame
 ) -> pd.DataFrame:
