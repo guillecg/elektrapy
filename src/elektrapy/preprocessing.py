@@ -46,6 +46,10 @@ def get_network_df(
     results_df: pd.DataFrame,
     group_var: str
 ) -> pd.DataFrame:
+    """
+    Main function for processing the results dataframe to obtain a dataframe for
+    plotting, with the corresponding links between nodes.
+    """
 
     network_df = results_df\
         .melt(id_vars=group_var)\
