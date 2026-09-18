@@ -10,6 +10,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 from elektrapy import PATHWAY_NODE_MAP, CYCLE_COLOR_MAP
+from elektrapy.indices import get_redox_index, get_aggregated_potential
 
 
 def get_node_df(
