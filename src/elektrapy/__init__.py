@@ -63,6 +63,16 @@ NODE_CYCLE_MAP = {
     "SeO4": "other"
 }
 
+CYCLE_COLOR_MAP = {
+    "hydrogen": "#D8FFC5",
+    "carbon": "#2E2910",
+    "sulfur": "#FFEA88",
+    "nitrogen": "#3874FF",
+    "oxygen": "#E63946",
+    "iron": "#B34A44",
+    "other": "#C7D3C0"
+}
+
 ID_COLS = [
     "dataset",
     "sample_id",
