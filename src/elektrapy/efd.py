@@ -47,9 +47,15 @@ def get_efd(
     network_df: pd.DataFrame,
     node_df: pd.DataFrame,
     label_var: str,
-    color_var: str = "count",
-    cycle_color_map: dict = CYCLE_COLOR_MAP
+    color_var: str,
+    color_map: dict,
+    cycle_color_map: dict = CYCLE_COLOR_MAP,
+    highlight_node: str = "H2",
+    link_alpha: float = 0.1
 ) -> go.Figure:
+
+    # ------------------------------------------------------------------------ #
+    # Nodes
 
     # Add cycle color to nodes
     node_df["node_color"] = node_df["node"].map(
@@ -64,6 +70,22 @@ def get_efd(
         node_df=node_df,
         network_df=network_df
     )
+
+    # ------------------------------------------------------------------------ #
+    # Links
+
+    link_var = f"link_color_{color_var}"
+
+    network_df[link_var] = network_df[color_var].map(link_map)
+
+    network_df = _modify_link_alpha(
+        network_df=network_df,
+        color_var=link_var,
+        alpha=link_alpha,
+        node=highlight_node
+    )
+
+    # ------------------------------------------------------------------------ #
 
     fig = go.Figure(
         go.Sankey(
@@ -216,3 +238,27 @@ def _encode_nodes(
     network_df = network_df.sort_values("target")
 
     return [node_df, network_df]
+
+
+def _highlight_node(
+    network_df: pd.DataFrame,
+    color_var: str,
+    alpha: float = 0.1,
+    node: str = "H2"
+) -> pd.DataFrame:
+
+    # Modify link opacity
+    network_df[color_var] = network_df[color_var]\
+        .apply(lambda row: f"rgb{hex_to_rgb(row)}")\
+        .apply(lambda row: row.replace("rgb", "rgba"))\
+        .apply(lambda row: row.replace(")", f", {alpha})"))
+
+    network_df.loc[
+        (network_df["source"] == node),
+        color_var
+    ] = network_df.loc[
+        (network_df["source"] == node),
+        color_var
+    ].str.replace(f", {alpha})", ", 1)")
+
+    return network_df
