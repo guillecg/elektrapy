@@ -43,9 +43,14 @@ def create_sankey(
     network_df: pd.DataFrame,
     node_df: pd.DataFrame,
     label_var: str,
-    color_var: str = "count"
+    color_var: str = "count",
+    cycle_color_map: dict = CYCLE_COLOR_MAP
 ) -> go.Figure:
-    # See: https://stackoverflow.com/questions/74657646/plotly-sankey-how-to-use-defined-node-positions-with-vertical-orientation-wit
+
+    # Add cycle color to nodes
+    node_df["node_color"] = node_df["node"].map(
+        _get_node_colors(cycle_color_map)
+    )
 
     fig = go.Figure(
         go.Sankey(
@@ -131,3 +136,16 @@ def create_sankey(
     )
 
     return fig
+
+
+def _get_node_colors(cycle_color_map: dict) -> pd.DataFrame:
+
+    node_colors = pd.DataFrame\
+        .from_dict(node_cycle_map, orient="index")\
+        .reset_index()\
+        .rename(columns={"index": "node", 0: "cycle"})
+
+    node_colors["color"] = node_colors["cycle"].map(cycle_color_map)
+    node_colors = dict(zip(node_colors["node"], node_colors["color"]))
+
+    return node_colors
