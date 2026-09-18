@@ -2,7 +2,7 @@ import itertools
 
 import pandas as pd
 
-from elektrapy import PATHWAY_NODE_MAP, PATHWAY_NODE_MAP_INFERRED
+from elektrapy import PATHWAY_NODE_MAP
 
 
 def preprocess_data(
