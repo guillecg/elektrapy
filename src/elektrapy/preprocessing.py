@@ -155,7 +155,7 @@ def _get_nodes_inferred(
 
     assert len(network_df), "[ERROR] Empty dataframe."
 
-    network_df["node"] = network_df["pathway"].map(PATHWAY_NODE_MAP_INFERRED)
+    network_df["node"] = network_df["pathway"].map(PATHWAY_NODE_MAP)
     network_df[["node_type", "node"]] = network_df["node"]\
         .str.split("-", expand=True)
     network_df["node_type"] = network_df["node_type"].replace({
