@@ -1,3 +1,5 @@
+from typing import List
+
 import os
 import glob
 
@@ -56,6 +58,12 @@ def get_efd(
 
     # Scale nodes to fit in the Sankey diagram
     node_df = _scale_nodes(node_df)
+
+    # Encode nodes as categories
+    node_df, network_df = _encode_nodes(
+        node_df=node_df,
+        network_df=network_df
+    )
 
     fig = go.Figure(
         go.Sankey(
@@ -185,3 +193,26 @@ def _scale_nodes(node_df: pd.dataframe) -> pd.DataFrame:
     node_df = node_df[~node_df["node"].isin(["minimum", "maximum"])].copy()
 
     return node_df
+
+
+def _encode_nodes(
+    node_df: pd.DataFrame,
+    network_df: pd.DataFrame
+) -> List[pd.DataFrame, pd.DataFrame]:
+
+    categories = CategoricalDtype(
+        categories=node_df["node"].unique(),
+        ordered=True
+    )
+
+    # Encode as categories for plotting
+    node_df["node"] = node_df["node"].astype(categories)
+    network_df["source"] = network_df["source"].astype(categories)
+    network_df["target"] = network_df["target"].astype(categories)
+
+    # Force sorting according to categories for maintaining order in Sankey
+    # NOTE: missing categories may alter order of colors!
+    node_df = node_df.sort_values("node")
+    network_df = network_df.sort_values("target")
+
+    return [node_df, network_df]
