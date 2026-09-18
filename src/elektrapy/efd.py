@@ -39,7 +39,7 @@ def get_node_df(
     return node_df
 
 
-def create_sankey(
+def get_efd(
     network_df: pd.DataFrame,
     node_df: pd.DataFrame,
     label_var: str,
