@@ -11,7 +11,7 @@ import plotly
 import plotly.graph_objects as go
 import plotly.express as px
 
-from elektrapy import PATHWAY_NODE_MAP, CYCLE_COLOR_MAP
+from elektrapy import PATHWAY_NODE_MAP, NODE_CYCLE_MAP, CYCLE_COLOR_MAP
 from elektrapy.indices import get_redox_index, get_mean_potential
 
 
@@ -173,7 +173,10 @@ def get_efd(
     return fig
 
 
-def _get_node_colors(cycle_color_map: dict) -> pd.DataFrame:
+def _get_node_colors(
+    cycle_color_map: dict,
+    node_cycle_map: dict = NODE_CYCLE_MAP,
+) -> pd.DataFrame:
 
     node_colors = pd.DataFrame\
         .from_dict(node_cycle_map, orient="index")\
