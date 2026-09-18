@@ -52,6 +52,9 @@ def create_sankey(
         _get_node_colors(cycle_color_map)
     )
 
+    # Scale nodes to fit in the Sankey diagram
+    node_df = _scale_nodes(node_df)
+
     fig = go.Figure(
         go.Sankey(
             domain={
@@ -149,3 +152,34 @@ def _get_node_colors(cycle_color_map: dict) -> pd.DataFrame:
     node_colors = dict(zip(node_colors["node"], node_colors["color"]))
 
     return node_colors
+
+
+def _scale_nodes(node_df: pd.dataframe) -> pd.DataFrame:
+
+    # Manually add minimum and maximum to force the range before scaling
+    node_df = pd.concat([
+        node_df,
+        pd.Series({
+            "node": "minimum",
+            "redox_index": -1,
+            "transformed_potential": -1.5
+        }).to_frame().T,
+        pd.Series({
+            "node": "maximum",
+            "redox_index": 1,
+            "transformed_potential": 1
+        }).to_frame().T
+    ])
+
+    # Transform axes to fit within the range of [0, 1] for the Sankey diagram
+    node_df["redox_index_minmax"] = minmax_scale(
+        node_df["redox_index"]
+    )
+    node_df["transformed_potential_minmax"] = minmax_scale(
+        node_df["transformed_potential"]
+    )
+
+    # Drop artificial nodes
+    node_df = node_df[~node_df["node"].isin(["minimum", "maximum"])].copy()
+
+    return node_df
