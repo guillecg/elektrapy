@@ -48,7 +48,7 @@ def get_efd(
     node_df: pd.DataFrame,
     label_var: str,
     color_var: str,
-    color_map: dict,
+    link_color_map: dict,
     cycle_color_map: dict = CYCLE_COLOR_MAP,
     highlight_node: str = "H2",
     link_alpha: float = 0.1
@@ -76,7 +76,7 @@ def get_efd(
 
     link_var = f"link_color_{color_var}"
 
-    network_df[link_var] = network_df[color_var].map(link_map)
+    network_df[link_var] = network_df[color_var].map(link_color_map)
 
     network_df = _modify_link_alpha(
         network_df=network_df,
