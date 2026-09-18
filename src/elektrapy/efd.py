@@ -9,63 +9,32 @@ import plotly
 import plotly.graph_objects as go
 import plotly.express as px
 
-from elektrapy import PATHWAY_NODE_MAP
+from elektrapy import PATHWAY_NODE_MAP, CYCLE_COLOR_MAP
 
 
-def get_colors(
-    points: list,
-    colorscale: str = "Sunset_r"
-) -> list:
-    return plotly.colors.sample_colorscale(
-        colorscale=colorscale,
-        samplepoints=points,
-        low=0.0,
-        high=1.0,
-        colortype="rgb"
+def get_node_df(
+    network_df: pd.DataFrame,
+    redox_df: pd.DataFrame
+) -> pd.DataFrame:
+
+    # X axis: the Redox Tendency Index
+    rti_df = get_redox_index(
+        network_df=network_df_sample,
+        group_var="sample_id"
     )
 
-
-def get_node_data(network_df: pd.DataFrame) -> pd.DataFrame:
-    # Calculate degree percentage per node
-
-    # NOTE: multiple species can participate in more than one reaction. For
-    # example, SO3 can be oxidized or reduced, so to sum percentages we need to 
-    # keep track of n_genomes twice (one for oxidation, one for reduction)
-
-    target_df = network_df\
-        .groupby(["cycle", "target"], as_index=False)\
-        [["count", "n_genomes"]]\
-        .sum()
-    target_df["degree_in_ratio"] = \
-        target_df["count"] / target_df["n_genomes"]
-    target_df = target_df\
-        .rename(columns={"target": "node"})\
-        .drop(["count", "n_genomes"], axis=1)
-
-    source_df = network_df\
-        .groupby(["cycle", "source"], as_index=False)\
-        [["count", "n_genomes"]]\
-        .sum()
-    source_df["degree_out_ratio"] = \
-        source_df["count"] / source_df["n_genomes"]
-    source_df = source_df\
-        .rename(columns={"source": "node"})\
-        .drop(["count", "n_genomes"], axis=1)
+    # Y axis: the mean of the transformed Eº'
+    redox_df = get_aggregated_potential(
+        redox_df=redox_df,
+        rti_df=rti_df
+    )
 
     node_df = pd.merge(
-        left=target_df,
-        right=source_df,
-        on=["cycle", "node"],
-        how="outer" # Outer to allow source-only or target-only nodes
+        left=rti_df,
+        right=redox_df,
+        on="node",
+        how="inner"
     )
-
-    # Calculate percentage change (positive if acceptor, negative if donor)
-    node_df["redox_index"] = \
-        (node_df["degree_in_ratio"] - node_df["degree_out_ratio"]) / \
-        node_df["degree_out_ratio"]
-
-    # Fill missing targets/sources in source-only and target-only nodes
-    node_df = node_df.fillna(0.0)
 
     return node_df
 
