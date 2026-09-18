@@ -188,6 +188,60 @@ def get_efd(
     return fig
 
 
+def get_rti_plot(
+    network_df: pd.DataFrame,
+    group_var: str,
+    link_color_map: dict
+) -> go.Figure:
+
+    node_df_group = []
+
+    for group in network_df[group_var].unique():
+
+        group_df = network_df[network_df[group_var] == group]
+
+        # X axis: the Redox Tendency Index
+        rti_df = get_redox_index(
+            network_df=group_df,
+            group_var="sample_id"
+        )
+        rti_df[group_var] = group
+
+        node_df_group.append(rti_df)
+
+    node_df_group = pd.concat(node_df_group)
+
+    fig = px.scatter(
+        data_frame=node_df_group,
+        x="redox_index",
+        y="node",
+        color=group_var,
+        color_discrete_map=link_color_map,
+        category_orders={
+            group_var: link_color_map.keys()
+        },
+        hover_name="node",
+        template="plotly_white"
+    )
+
+    fig.update_layout(
+        width=1000,
+        height=750,
+        font=dict(
+            size=15,
+            # weight="bold",
+            family="Arial"
+        ),
+        paper_bgcolor="white",
+        plot_bgcolor="white"
+    )
+
+    # Invert potentials to go from most negative to most positive
+    fig["layout"]["yaxis"]["autorange"] = "reversed"
+
+    return fig
+
+
 def _get_node_colors(
     cycle_color_map: dict,
     node_cycle_map: dict = NODE_CYCLE_MAP,
