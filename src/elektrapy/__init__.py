@@ -36,6 +36,33 @@ PATHWAY_NODE_MAP = {
     "S-S-09:Thiosulfate disproportionation 2": "oxidation-S2O3"
 }
 
+NODE_CYCLE_MAP = {
+    "H2": "hydrogen",
+    "H+": "hydrogen",
+    "organic carbon": "carbon",
+    "acetate": "carbon",
+    "ethanol": "carbon",
+    "CH4": "carbon",
+    "CO2": "carbon",
+    "S0": "sulfur",
+    "H2S": "sulfur",
+    "SO3": "sulfur",
+    "SO4": "sulfur",
+    "S2O3": "sulfur",
+    "NO2": "nitrogen",
+    "NO3": "nitrogen",
+    "NH4": "nitrogen",
+    "N2O": "nitrogen",
+    "NO": "nitrogen",
+    "N2": "nitrogen",
+    "O2": "oxygen",
+    "Fe2+": "iron",
+    "Fe3+": "iron",
+    "AsO3": "other",
+    "AsO4": "other",
+    "SeO4": "other"
+}
+
 ID_COLS = [
     "dataset",
     "sample_id",
