@@ -15,13 +15,14 @@ from elektrapy.indices import get_redox_index, get_aggregated_potential
 
 def get_node_df(
     network_df: pd.DataFrame,
-    redox_df: pd.DataFrame
+    redox_df: pd.DataFrame,
+    group_var: str = "sample_id"
 ) -> pd.DataFrame:
 
     # X axis: the Redox Tendency Index
     rti_df = get_redox_index(
-        network_df=network_df_sample,
-        group_var="sample_id"
+        network_df=network_df,
+        group_var=group_var
     )
 
     # Y axis: the mean of the transformed Eº'
