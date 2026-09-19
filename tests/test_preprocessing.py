@@ -164,7 +164,7 @@ def test__get_transposed(
             os.path.join(
                 data_dir,
                 "results",
-                f"pathway-{group_var.split('_')[0]}-transposed.csv"
+                f"pathway-transposed-{group_var.split('_')[0]}.csv"
             )
         ),
         right=df
@@ -204,7 +204,7 @@ def test__map_sample_genome(
             os.path.join(
                 data_dir,
                 "results",
-                f"pathway-{group_var.split('_')[0]}-mapped.csv"
+                f"pathway-mapped-{group_var.split('_')[0]}.csv"
             )
         ),
         right=df
@@ -249,7 +249,7 @@ def test__get_grouped_counts(
             os.path.join(
                 data_dir,
                 "results",
-                f"pathway-{group_var.split('_')[0]}-counts.csv"
+                f"pathway-counts-{group_var.split('_')[0]}.csv"
             )
         ),
         right=df
@@ -276,7 +276,7 @@ def test_get_network_df_prenodes_genome(
             os.path.join(
                 data_dir,
                 "results",
-                f"network-{group_var.split('_')[0]}-prenodes.csv"
+                f"network-prenodes-{group_var.split('_')[0]}.csv"
             )
         ),
         right=network_df.reset_index(drop=True)
@@ -303,7 +303,7 @@ def test_get_network_df_prenodes_sample(
             os.path.join(
                 data_dir,
                 "results",
-                f"network-{group_var.split('_')[0]}-prenodes.csv"
+                f"network-prenodes-{group_var.split('_')[0]}.csv"
             )
         ),
         right=network_df.reset_index(drop=True)
