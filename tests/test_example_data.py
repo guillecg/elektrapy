@@ -5,7 +5,7 @@ import os
 import pandas as pd
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="module", autouse=True)
 def metadata_df(data_dir) -> pd.DataFrame:
     yield pd.read_csv(
         os.path.join(
@@ -15,7 +15,7 @@ def metadata_df(data_dir) -> pd.DataFrame:
     )
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="module", autouse=True)
 def pathway_df(data_dir) -> pd.DataFrame:
     yield pd.read_table(
         os.path.join(
