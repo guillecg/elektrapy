@@ -133,3 +133,13 @@ def node_df_sample(
         redox_df=redox_df,
         group_var=group_var
     )
+
+
+@pytest.fixture(scope="session", autouse=True)
+def link_color_map() -> dict:
+    yield{
+        "surface": "#FFC349",
+        "aquifer": "#97DDE9",
+        "mine": "#525EA7",
+        "reservoir": "#EB7F31"
+    }
