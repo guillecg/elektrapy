@@ -85,6 +85,28 @@ def test_get_efd(
     assert isinstance(fig, go.Figure)
 
 
+def test_get_rti_plot(
+    metadata_df: pd.DataFrame,
+    network_df_sample: pd.DataFrame,
+    network_df_group: pd.DataFrame,
+    color_var: str,
+    link_color_map: dict,
+) -> None:
+    network_df_group = pd.merge(
+        left=network_df_sample,
+        right=metadata_df[["sample_id", color_var]].drop_duplicates(),
+        how="inner",
+        on="sample_id"
+    )
+
+    fig = get_rti_plot(
+        network_df=network_df_group,
+        color_var=color_var,
+        link_color_map=link_color_map
+    )
+    assert isinstance(fig, go.Figure)
+
+
 def test__get_node_colors_sample(
     data_dir: str,
     node_df_sample: pd.DataFrame,
