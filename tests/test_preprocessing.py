@@ -121,20 +121,22 @@ def test_preprocess_data_sample(
     )
 
 
-@pytest.mark.parametrize(("fn_var", "group_var"), [
-    ("function", "genome_id"),
-    ("function", "sample_id"),
+@pytest.mark.parametrize(("group_var", "fn_var", "mapping"), [
+    ("genome_id", "function", None),
+    ("sample_id", "function", mapping),
     pytest.param(
-        "other",
         "genome_id",
+        "other",
+        None,
         marks=pytest.mark.xfail(reason="Column not originally found in data.")
     ),
     pytest.param(
-        "other",
         "sample_id",
+        "other",
+        mapping,
         marks=pytest.mark.xfail(reason="Column not originally found in data.")
     )
-])
+], indirect=["mapping"])
 def test_preprocess_data_fn_var(
     pathway_df: pd.DataFrame,
     group_var: str,
