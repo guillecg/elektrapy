@@ -7,16 +7,6 @@ import pandas as pd
 from elektrapy.indices import get_redox_index, get_mean_potential
 
 
-@pytest.fixture(scope="module", autouse=False)
-def redox_df() -> pd.DataFrame:
-    redox_df = pd.read_csv("data/redox-potentials.csv")
-
-    # Skip first row containing the units
-    redox_df = redox_df.iloc[1:]
-
-    yield redox_df
-
-
 def test_get_redox_index_genome(
     data_dir: str,
     network_df_genome: pd.DataFrame,

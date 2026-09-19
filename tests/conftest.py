@@ -83,3 +83,13 @@ def network_df_sample(data_dir: str) -> pd.DataFrame:
             "network-sample.csv"
         )
     )
+
+
+@pytest.fixture(scope="session", autouse=True)
+def redox_df() -> pd.DataFrame:
+    redox_df = pd.read_csv("data/redox-potentials.csv")
+
+    # Skip first row containing the units
+    redox_df = redox_df.iloc[1:]
+
+    yield redox_df
