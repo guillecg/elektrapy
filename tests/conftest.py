@@ -10,7 +10,7 @@ def data_dir() -> str:
     yield "tests/data/"
 
 
-@pytest.fixture(scope="module", autouse=False)
+@pytest.fixture(scope="session", autouse=True)
 def results_df_genome(data_dir: str) -> pd.DataFrame:
     results_df = pd.read_csv(
         os.path.join(
@@ -26,7 +26,7 @@ def results_df_genome(data_dir: str) -> pd.DataFrame:
     yield results_df
 
 
-@pytest.fixture(scope="module", autouse=False)
+@pytest.fixture(scope="session", autouse=True)
 def results_df_sample(data_dir: str) -> pd.DataFrame:
     results_df = pd.read_csv(
         os.path.join(
