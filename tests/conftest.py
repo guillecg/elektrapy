@@ -86,6 +86,26 @@ def network_df_sample(data_dir: str) -> pd.DataFrame:
 
 
 @pytest.fixture(scope="session", autouse=True)
+def network_df_group(
+    network_df_sample: pd.DataFrame,
+    metadata_df: pd.DataFrame,
+    group_var: str = "type"
+) -> pd.DataFrame:
+    network_df_group = pd.merge(
+        left=network_df_sample,
+        right=metadata_df[["sample_id", group_var]].drop_duplicates(),
+        how="inner",
+        on="sample_id"
+    )
+
+    network_df_group = network_df_group\
+        .groupby([group_var, "source", "target"], as_index=False)\
+        ["value"].sum()
+
+    yield network_df_group
+
+
+@pytest.fixture(scope="session", autouse=True)
 def redox_df() -> pd.DataFrame:
     redox_df = pd.read_csv("data/redox-potentials.csv")
 
