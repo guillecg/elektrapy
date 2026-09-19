@@ -7,7 +7,10 @@ import pandas as pd
 from elektrapy.preprocessing import (
     preprocess_data,
     get_network_df,
-    _get_transposed
+    _get_transposed,
+    _map_sample_genome,
+    _get_grouped_counts,
+    _get_nodes_inferred
 )
 
 
@@ -211,14 +214,20 @@ def test_get_network_df_sample(
     )
 
 
+@pytest.mark.parametrize(("group_var", "fn_var"), [
+    ("genome_id", "function"),
+    ("sample_id", "function"),
+])
 def test__get_transposed(
     pathway_df: pd.DataFrame,
-    data_dir: str
+    data_dir: str,
+    group_var: str,
+    fn_var: str
 ) -> None:
 
     df = pathway_df.copy()
 
-    df = df.rename(columns={"function": "pathway"})
+    df = df.rename(columns={fn_var: "pathway"})
 
     df = _get_transposed(df=df)
 
@@ -230,7 +239,7 @@ def test__get_transposed(
             os.path.join(
                 data_dir,
                 "results",
-                "pathway-genome-transposed.csv"
+                f"pathway-{group_var.split('_')[0]}-transposed.csv"
             )
         ),
         right=df
