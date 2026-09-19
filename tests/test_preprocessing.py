@@ -93,19 +93,44 @@ def test_preprocess_data_sample(
     )
 
 
-@pytest.mark.xfail
-def test_preprocess_data_fn_genome(pathway_df: pd.DataFrame) -> None:
+@pytest.mark.parametrize(("fn_var"), [
+    "function",
+    pytest.param(
+        "other",
+        marks=pytest.mark.xfail(reason="Column not originally found in data.")
+    ),
+])
+def test_preprocess_data_fn_genome(
+    pathway_df: pd.DataFrame,
+    fn_var: str
+) -> None:
     results_df_genome = preprocess_data(
         df=pathway_df,
         group_var="genome_id",
-        fn_var="other"
+        fn_var=fn_var
     )
 
 
-@pytest.mark.xfail
-def test_preprocess_data_fn_sample(pathway_df: pd.DataFrame) -> None:
+@pytest.mark.parametrize(("fn_var"), [
+    "function",
+    pytest.param(
+        "other",
+        marks=pytest.mark.xfail(reason="Column not originally found in data.")
+    ),
+])
+def test_preprocess_data_fn_sample(
+    pathway_df: pd.DataFrame,
+    metadata_df: pd.DataFrame,
+    fn_var: str
+) -> None:
     results_df_sample = preprocess_data(
         df=pathway_df,
         group_var="sample_id",
-        fn_var="other"
+        fn_var=fn_var,
+        mapping=dict(
+            zip(
+                metadata_df["genome_id"],
+                metadata_df["sample_id"]
+            )
+        )
     )
