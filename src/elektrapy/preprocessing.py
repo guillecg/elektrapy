@@ -158,4 +158,9 @@ def _get_nodes_inferred(
             record_df[[group_var, "source", "target", "value"]]
         )
 
-    return pd.concat(network_df_infer)
+    network_df_infer = pd.concat(network_df_infer)
+
+    # Reset duplicates in index entries caused by concatenation
+    network_df_infer = network_df_infer.reset_index(drop=True)
+
+    return network_df_infer
