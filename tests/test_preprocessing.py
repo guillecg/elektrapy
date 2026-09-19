@@ -284,3 +284,48 @@ def test__map_sample_genome(
         ),
         right=df
     )
+
+
+@pytest.mark.parametrize(("group_var", "fn_var", "mapping"), [
+    ("genome_id", "function", None),
+    ("sample_id", "function", mapping)
+], indirect=["mapping"])
+def test__get_grouped_counts(
+    pathway_df: pd.DataFrame,
+    data_dir: str,
+    group_var: str,
+    fn_var: str,
+    mapping: dict
+) -> None:
+
+    df = pathway_df.copy()
+
+    df = df.rename(columns={fn_var: "pathway"})
+
+    df = _get_transposed(df=df)
+
+    if group_var == "sample_id":
+        assert len(mapping.values()), "[ERROR] Empty mapping."
+        df = _map_sample_genome(
+            df=df,
+            mapping=mapping
+        )
+
+    df = _get_grouped_counts(
+        df=df,
+        group_var=group_var
+    )
+
+    # Remove name from column list
+    df.columns.name = None
+
+    pd.testing.assert_frame_equal(
+        left=pd.read_csv(
+            os.path.join(
+                data_dir,
+                "results",
+                f"pathway-{group_var.split('_')[0]}-counts.csv"
+            )
+        ),
+        right=df
+    )
