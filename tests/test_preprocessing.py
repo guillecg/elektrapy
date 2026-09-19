@@ -7,7 +7,7 @@ import pandas as pd
 from elektrapy.preprocessing import *
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def metadata_df(data_dir) -> pd.DataFrame:
     yield pd.read_csv(
         os.path.join(
@@ -17,7 +17,7 @@ def metadata_df(data_dir) -> pd.DataFrame:
     )
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def pathway_df(data_dir) -> pd.DataFrame:
     yield pd.read_table(
         os.path.join(
@@ -28,7 +28,7 @@ def pathway_df(data_dir) -> pd.DataFrame:
     )
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def results_df_genome(data_dir: str) -> pd.DataFrame:
     results_df = pd.read_csv(
         os.path.join(
@@ -44,7 +44,7 @@ def results_df_genome(data_dir: str) -> pd.DataFrame:
     yield results_df
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def results_df_sample(data_dir: str) -> pd.DataFrame:
     results_df = pd.read_csv(
         os.path.join(
@@ -60,7 +60,7 @@ def results_df_sample(data_dir: str) -> pd.DataFrame:
     yield results_df
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def network_df_genome(data_dir: str) -> pd.DataFrame:
     yield pd.read_csv(
         os.path.join(
@@ -71,7 +71,7 @@ def network_df_genome(data_dir: str) -> pd.DataFrame:
     )
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def network_df_sample(data_dir: str) -> pd.DataFrame:
     yield pd.read_csv(
         os.path.join(
