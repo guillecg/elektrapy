@@ -329,3 +329,30 @@ def test__get_grouped_counts(
         ),
         right=df
     )
+
+
+def test_get_network_df_prenodes_genome(
+    data_dir: str,
+    results_df_genome: pd.DataFrame,
+    group_var: str = "genome_id"
+) -> None:
+
+    results_df = results_df_genome.copy()
+
+    network_df = results_df\
+        .melt(id_vars=group_var)\
+        .sort_values(group_var)
+
+    # Drop pathways without presence
+    network_df = network_df[network_df["value"] >= 1]
+
+    pd.testing.assert_frame_equal(
+        left=pd.read_csv(
+            os.path.join(
+                data_dir,
+                "results",
+                f"network-{group_var.split('_')[0]}-prenodes.csv"
+            )
+        ),
+        right=network_df.reset_index(drop=True)
+    )
