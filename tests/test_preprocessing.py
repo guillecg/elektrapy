@@ -4,7 +4,11 @@ import os
 
 import pandas as pd
 
-from elektrapy.preprocessing import *
+from elektrapy.preprocessing import (
+    preprocess_data,
+    get_network_df,
+    _get_transposed
+)
 
 
 @pytest.fixture(scope="module", autouse=False)
@@ -204,4 +208,30 @@ def test_get_network_df_sample(
             results_df=results_df_sample,
             group_var="sample_id"
         )
+    )
+
+
+def test__get_transposed(
+    pathway_df: pd.DataFrame,
+    data_dir: str
+) -> None:
+
+    df = pathway_df.copy()
+
+    df = df.rename(columns={"function": "pathway"})
+
+    df = _get_transposed(df=df)
+
+    # Remove name from column list
+    df.columns.name = None
+
+    pd.testing.assert_frame_equal(
+        left=pd.read_csv(
+            os.path.join(
+                data_dir,
+                "results",
+                "pathway-genome-transposed.csv"
+            )
+        ),
+        right=df
     )
