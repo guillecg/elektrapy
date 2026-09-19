@@ -125,13 +125,13 @@ def test__scale_nodes(
 def test__encode_nodes(
     data_dir: str,
     node_df_sample: pd.DataFrame,
-    network_df_sample: pd.DataFrame,
+    network_df_group: pd.DataFrame,
     color_var: str,
     cycle_color_map: dict = CYCLE_COLOR_MAP
 ) -> None:
 
     node_df = node_df_sample.copy()
-    network_df = network_df_sample.copy()
+    network_df = network_df_group.copy()
 
     # Add cycle color to nodes
     node_df["node_color"] = node_df["node"].map(
@@ -169,4 +169,69 @@ def test__encode_nodes(
     pd.testing.assert_frame_equal(
         left=node_df_test,
         right=node_df
+    )
+
+
+def test__highlight_node(
+    data_dir: str,
+    node_df_sample: pd.DataFrame,
+    network_df_group: pd.DataFrame,
+    color_var: str,
+    link_color_map: dict,
+    cycle_color_map: dict = CYCLE_COLOR_MAP,
+    highlight_node: str = "H2",
+    link_alpha: float = 0.1
+) -> None:
+
+    node_df = node_df_sample.copy()
+    network_df = network_df_group.copy()
+
+    # Add cycle color to nodes
+    node_df["node_color"] = node_df["node"].map(
+        _get_node_colors(cycle_color_map)
+    )
+
+    # Scale nodes to fit in the Sankey diagram
+    node_df = _scale_nodes(node_df)
+
+    # Encode nodes as categories
+    node_df, network_df = _encode_nodes(
+        node_df=node_df,
+        network_df=network_df
+    )
+
+    # ------------------------------------------------------------------------ #
+    # Links
+
+    link_var = f"link_color_{color_var}"
+
+    network_df[link_var] = network_df[color_var].map(link_color_map)
+
+    network_df = _highlight_node(
+        network_df=network_df,
+        color_var=link_var,
+        alpha=link_alpha,
+        node=highlight_node
+    )
+
+    # Manually encode categories
+    network_df_test = pd.read_csv(
+        os.path.join(
+            data_dir,
+            "results",
+            f"network-highlight-{color_var}.csv"
+        )
+    )
+    node_df, network_df_test = _encode_nodes(
+        node_df=node_df,
+        network_df=network_df_test
+    )
+
+    # Sort to match order in test dataframe
+    network_df = network_df.sort_values("target")
+
+    pd.testing.assert_frame_equal(
+        left=network_df_test.reset_index(drop=True),
+        right=network_df.reset_index(drop=True),
+        check_like=True
     )
