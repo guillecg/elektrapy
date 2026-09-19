@@ -4,6 +4,13 @@ import os
 
 import pandas as pd
 
+from elektrapy.efd import get_node_df
+
+
+@pytest.fixture(scope="session", autouse=True)
+def color_var() -> str:
+    yield "type"
+
 
 @pytest.fixture(scope="session", autouse=True)
 def data_dir() -> str:
@@ -89,17 +96,17 @@ def network_df_sample(data_dir: str) -> pd.DataFrame:
 def network_df_group(
     network_df_sample: pd.DataFrame,
     metadata_df: pd.DataFrame,
-    group_var: str = "type"
+    color_var: str
 ) -> pd.DataFrame:
     network_df_group = pd.merge(
         left=network_df_sample,
-        right=metadata_df[["sample_id", group_var]].drop_duplicates(),
+        right=metadata_df[["sample_id", color_var]].drop_duplicates(),
         how="inner",
         on="sample_id"
     )
 
     network_df_group = network_df_group\
-        .groupby([group_var, "source", "target"], as_index=False)\
+        .groupby([color_var, "source", "target"], as_index=False)\
         ["value"].sum()
 
     yield network_df_group
@@ -113,3 +120,16 @@ def redox_df() -> pd.DataFrame:
     redox_df = redox_df.iloc[1:]
 
     yield redox_df
+
+
+@pytest.fixture(scope="session", autouse=True)
+def node_df_sample(
+    network_df_sample: pd.DataFrame,
+    redox_df: pd.DataFrame,
+    group_var: str = "sample_id"
+) -> pd.DataFrame:
+    yield get_node_df(
+        network_df=network_df_sample,
+        redox_df=redox_df,
+        group_var=group_var
+    )
