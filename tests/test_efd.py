@@ -5,6 +5,8 @@ import os
 import pandas as pd
 from pandas.api.types import CategoricalDtype
 
+import plotly.graph_objects as go
+
 from elektrapy import PATHWAY_NODE_MAP, NODE_CYCLE_MAP, CYCLE_COLOR_MAP
 from elektrapy.efd import (
     get_node_df,
@@ -59,6 +61,28 @@ def test_get_node_df_sample(
             group_var=group_var
         )
     )
+
+
+def test_get_efd(
+    data_dir: str,
+    node_df_sample: pd.DataFrame,
+    network_df_group: pd.DataFrame,
+    color_var: str,
+    link_color_map: dict,
+    cycle_color_map: dict = CYCLE_COLOR_MAP,
+    highlight_node: str = "H2",
+    link_alpha: float = 0.1
+) -> None:
+    fig = get_efd(
+        network_df=network_df_group,
+        node_df=node_df_sample,
+        color_var=color_var,
+        link_color_map=link_color_map,
+        cycle_color_map=cycle_color_map,
+        highlight_node="H2",
+        link_alpha=0.1
+    )
+    assert isinstance(fig, go.Figure)
 
 
 def test__get_node_colors_sample(
