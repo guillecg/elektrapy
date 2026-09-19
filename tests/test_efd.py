@@ -69,6 +69,7 @@ def test__get_node_colors_sample(
 
     node_df = node_df_sample.copy()
 
+    # Add cycle color to nodes
     node_df["node_color"] = node_df["node"].map(
         _get_node_colors(cycle_color_map)
     )
@@ -79,6 +80,41 @@ def test__get_node_colors_sample(
                 data_dir,
                 "results",
                 f"nodes-color-{color_var}.csv"
+            )
+        ),
+        right=node_df
+    )
+
+
+def test__scale_nodes(
+    data_dir: str,
+    node_df_sample: pd.DataFrame,
+    color_var: str,
+    cycle_color_map: dict = CYCLE_COLOR_MAP
+) -> None:
+
+    node_df = node_df_sample.copy()
+
+    # Add cycle color to nodes
+    node_df["node_color"] = node_df["node"].map(
+        _get_node_colors(cycle_color_map)
+    )
+
+    # Scale nodes to fit in the Sankey diagram
+    node_df = _scale_nodes(node_df)
+
+    # Fix dtypes for comparison
+    node_df["node"] = node_df["node"].astype(str)
+    node_df["redox_index"] = node_df["redox_index"].astype(float)
+    node_df["transformed_potential"] = node_df["transformed_potential"]\
+        .astype(float)
+
+    pd.testing.assert_frame_equal(
+        left=pd.read_csv(
+            os.path.join(
+                data_dir,
+                "results",
+                f"nodes-scale-{color_var}.csv"
             )
         ),
         right=node_df
