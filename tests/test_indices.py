@@ -27,3 +27,23 @@ def network_df_sample(data_dir: str) -> pd.DataFrame:
             "network-sample.csv"
         )
     )
+
+
+def test_get_redox_index_genome(
+    data_dir: str,
+    network_df_genome: pd.DataFrame,
+    group_var: str = "genome_id"
+) -> None:
+    pd.testing.assert_frame_equal(
+        left=pd.read_csv(
+            os.path.join(
+                data_dir,
+                "results",
+                f"indices-rti-{group_var.split('_')[0]}.csv"
+            )
+        ),
+        right=get_redox_index(
+            network_df=network_df_genome,
+            group_var=group_var
+        ).reset_index(drop=True)
+    )
