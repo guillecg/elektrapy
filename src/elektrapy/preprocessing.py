@@ -67,6 +67,17 @@ def get_network_df(
     return network_df
 
 
+def _get_transposed(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Auxiliary function for transposing the original count dataframe to get 
+    genomes (index) per function (columns).
+    """
+    return df\
+        .set_index("pathway").T\
+        .reset_index()\
+        .rename(columns={"index": "genome_id"})
+
+
 def _map_sample_genome(
     df: pd.DataFrame,
     mapping: dict
@@ -81,17 +92,6 @@ def _map_sample_genome(
     df = df.drop("genome_id", axis=1)
 
     return df
-
-
-def _get_transposed(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Auxiliary function for transposing the original count dataframe to get 
-    genomes (index) per function (columns).
-    """
-    return df\
-        .set_index("pathway").T\
-        .reset_index()\
-        .rename(columns={"index": "genome_id"})
 
 
 def _get_grouped_counts(
