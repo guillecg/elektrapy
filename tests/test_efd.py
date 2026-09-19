@@ -3,6 +3,7 @@ import pytest
 import os
 
 import pandas as pd
+from pandas.api.types import CategoricalDtype
 
 from elektrapy import PATHWAY_NODE_MAP, NODE_CYCLE_MAP, CYCLE_COLOR_MAP
 from elektrapy.efd import (
@@ -117,5 +118,55 @@ def test__scale_nodes(
                 f"nodes-scale-{color_var}.csv"
             )
         ),
+        right=node_df
+    )
+
+
+def test__encode_nodes(
+    data_dir: str,
+    node_df_sample: pd.DataFrame,
+    network_df_sample: pd.DataFrame,
+    color_var: str,
+    cycle_color_map: dict = CYCLE_COLOR_MAP
+) -> None:
+
+    node_df = node_df_sample.copy()
+    network_df = network_df_sample.copy()
+
+    # Add cycle color to nodes
+    node_df["node_color"] = node_df["node"].map(
+        _get_node_colors(cycle_color_map)
+    )
+
+    # Scale nodes to fit in the Sankey diagram
+    node_df = _scale_nodes(node_df)
+
+    # Encode nodes as categories
+    node_df, network_df = _encode_nodes(
+        node_df=node_df,
+        network_df=network_df
+    )
+
+    # Fix dtypes for comparison
+    node_df["redox_index"] = node_df["redox_index"].astype(float)
+    node_df["transformed_potential"] = node_df["transformed_potential"]\
+        .astype(float)
+
+    # Manually encode categories
+    node_df_test = pd.read_csv(
+        os.path.join(
+            data_dir,
+            "results",
+            f"nodes-coded-{color_var}.csv"
+        )
+    )
+    categories = CategoricalDtype(
+        categories=node_df["node"].unique(),
+        ordered=True
+    )
+    node_df_test["node"] = node_df_test["node"].astype(categories)
+
+    pd.testing.assert_frame_equal(
+        left=node_df_test,
         right=node_df
     )
