@@ -187,22 +187,22 @@ def get_efd(
 
 def get_rti_plot(
     network_df: pd.DataFrame,
-    group_var: str,
+    color_var: str,
     link_color_map: dict
 ) -> go.Figure:
 
     node_df_group = []
 
-    for group in network_df[group_var].unique():
+    for group in network_df[color_var].unique():
 
-        group_df = network_df[network_df[group_var] == group]
+        group_df = network_df[network_df[color_var] == group]
 
         # X axis: the Redox Tendency Index
         rti_df = get_redox_index(
             network_df=group_df,
             group_var="sample_id"
         )
-        rti_df[group_var] = group
+        rti_df[color_var] = group
 
         node_df_group.append(rti_df)
 
@@ -212,10 +212,10 @@ def get_rti_plot(
         data_frame=node_df_group,
         x="redox_index",
         y="node",
-        color=group_var,
+        color=color_var,
         color_discrete_map=link_color_map,
         category_orders={
-            group_var: link_color_map.keys()
+            color_var: link_color_map.keys()
         },
         hover_name="node",
         template="plotly_white"
@@ -226,7 +226,6 @@ def get_rti_plot(
         height=750,
         font=dict(
             size=15,
-            # weight="bold",
             family="Arial"
         ),
         paper_bgcolor="white",
