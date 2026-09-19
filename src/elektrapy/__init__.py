@@ -1,3 +1,6 @@
+
+__version__ = "0.1.0"
+
 PATHWAY_NODE_MAP = {
     "C-S-01:Organic carbon oxidation": "oxidation-organic carbon",
     "C-S-02:Carbon fixation": "fixation-CO2",
