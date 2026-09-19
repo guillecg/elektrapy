@@ -4,7 +4,7 @@ import os
 
 import pandas as pd
 
-from elektrapy.preprocessing import preprocess_data
+from elektrapy.preprocessing import *
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -154,5 +154,35 @@ def test_preprocess_data_fn_sample(
                 metadata_df["genome_id"],
                 metadata_df["sample_id"]
             )
+        )
+    )
+
+
+def test_get_network_df_genome(
+    results_df_genome: pd.DataFrame,
+    network_df_genome: pd.DataFrame
+) -> None:
+
+    network_df = get_network_df(
+        results_df=results_df_genome,
+        group_var="genome_id"
+    )
+    network_df = network_df.reset_index(drop=True)
+
+    pd.testing.assert_frame_equal(
+        left=network_df_genome,
+        right=network_df
+    )
+
+
+def test_get_network_df_sample(
+    results_df_sample: pd.DataFrame,
+    network_df_sample: pd.DataFrame
+) -> None:
+    pd.testing.assert_frame_equal(
+        left=network_df_sample,
+        right=get_network_df(
+            results_df=results_df_sample,
+            group_var="sample_id"
         )
     )
