@@ -36,38 +36,6 @@ def pathway_df(data_dir) -> pd.DataFrame:
 
 
 @pytest.fixture(scope="module", autouse=False)
-def results_df_genome(data_dir: str) -> pd.DataFrame:
-    results_df = pd.read_csv(
-        os.path.join(
-            data_dir,
-            "results",
-            "results-genome.csv"
-        )
-    )
-
-    # Add name to column list
-    results_df.columns.name = "pathway"
-
-    yield results_df
-
-
-@pytest.fixture(scope="module", autouse=False)
-def results_df_sample(data_dir: str) -> pd.DataFrame:
-    results_df = pd.read_csv(
-        os.path.join(
-            data_dir,
-            "results",
-            "results-sample.csv"
-        )
-    )
-
-    # Add name to column list
-    results_df.columns.name = "pathway"
-
-    yield results_df
-
-
-@pytest.fixture(scope="module", autouse=False)
 def mapping(metadata_df: pd.DataFrame) -> dict:
     yield dict(
         zip(
