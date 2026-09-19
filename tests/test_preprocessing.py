@@ -82,6 +82,16 @@ def network_df_sample(data_dir: str) -> pd.DataFrame:
     )
 
 
+@pytest.fixture(scope="module", autouse=False)
+def mapping(metadata_df: pd.DataFrame) -> dict:
+    yield dict(
+        zip(
+            metadata_df["genome_id"],
+            metadata_df["sample_id"]
+        )
+    )
+
+
 def test_preprocess_data_genome(
     pathway_df: pd.DataFrame,
     results_df_genome: pd.DataFrame
@@ -98,19 +108,15 @@ def test_preprocess_data_genome(
 def test_preprocess_data_sample(
     pathway_df: pd.DataFrame,
     results_df_sample: pd.DataFrame,
-    metadata_df: pd.DataFrame
+    metadata_df: pd.DataFrame,
+    mapping: dict
 ) -> None:
     pd.testing.assert_frame_equal(
         left=results_df_sample,
         right=preprocess_data(
             df=pathway_df,
             group_var="sample_id",
-            mapping=dict(
-                zip(
-                    metadata_df["genome_id"],
-                    metadata_df["sample_id"]
-                )
-            )
+            mapping=mapping
         )
     )
 
@@ -143,18 +149,14 @@ def test_preprocess_data_fn_genome(
 def test_preprocess_data_fn_sample(
     pathway_df: pd.DataFrame,
     metadata_df: pd.DataFrame,
-    fn_var: str
+    fn_var: str,
+    mapping: dict
 ) -> None:
     results_df_sample = preprocess_data(
         df=pathway_df,
         group_var="sample_id",
         fn_var=fn_var,
-        mapping=dict(
-            zip(
-                metadata_df["genome_id"],
-                metadata_df["sample_id"]
-            )
-        )
+        mapping=mapping
     )
 
 
