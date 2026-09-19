@@ -5,27 +5,6 @@ import os
 import pandas as pd
 
 
-@pytest.fixture(scope="module", autouse=True)
-def metadata_df(data_dir: str) -> pd.DataFrame:
-    yield pd.read_csv(
-        os.path.join(
-            data_dir,
-            "metadata.csv"
-        )
-    )
-
-
-@pytest.fixture(scope="module", autouse=True)
-def pathway_df(data_dir: str) -> pd.DataFrame:
-    yield pd.read_table(
-        os.path.join(
-            data_dir,
-            "bigecyhmm",
-            "pathway_presence.tsv"
-        )
-    )
-
-
 def test_metadata_df_shape(metadata_df: pd.DataFrame) -> None:
     assert metadata_df.shape == (12, 4), \
         "[ERROR] Incorrect shape for metadata_df."

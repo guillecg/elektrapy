@@ -11,6 +11,27 @@ def data_dir() -> str:
 
 
 @pytest.fixture(scope="session", autouse=True)
+def metadata_df(data_dir) -> pd.DataFrame:
+    yield pd.read_csv(
+        os.path.join(
+            data_dir,
+            "metadata.csv"
+        )
+    )
+
+
+@pytest.fixture(scope="session", autouse=True)
+def pathway_df(data_dir) -> pd.DataFrame:
+    yield pd.read_table(
+        os.path.join(
+            data_dir,
+            "bigecyhmm",
+            "pathway_presence.tsv"
+        )
+    )
+
+
+@pytest.fixture(scope="session", autouse=True)
 def results_df_genome(data_dir: str) -> pd.DataFrame:
     results_df = pd.read_csv(
         os.path.join(

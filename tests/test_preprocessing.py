@@ -15,27 +15,6 @@ from elektrapy.preprocessing import (
 
 
 @pytest.fixture(scope="module", autouse=False)
-def metadata_df(data_dir) -> pd.DataFrame:
-    yield pd.read_csv(
-        os.path.join(
-            data_dir,
-            "metadata.csv"
-        )
-    )
-
-
-@pytest.fixture(scope="module", autouse=False)
-def pathway_df(data_dir) -> pd.DataFrame:
-    yield pd.read_table(
-        os.path.join(
-            data_dir,
-            "bigecyhmm",
-            "pathway_presence.tsv"
-        )
-    )
-
-
-@pytest.fixture(scope="module", autouse=False)
 def mapping(metadata_df: pd.DataFrame) -> dict:
     yield dict(
         zip(
