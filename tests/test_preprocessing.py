@@ -91,3 +91,21 @@ def test_preprocess_data_sample(
             )
         )
     )
+
+
+@pytest.mark.xfail
+def test_preprocess_data_fn_genome(pathway_df: pd.DataFrame) -> None:
+    results_df_genome = preprocess_data(
+        df=pathway_df,
+        group_var="genome_id",
+        fn_var="other"
+    )
+
+
+@pytest.mark.xfail
+def test_preprocess_data_fn_sample(pathway_df: pd.DataFrame) -> None:
+    results_df_sample = preprocess_data(
+        df=pathway_df,
+        group_var="sample_id",
+        fn_var="other"
+    )
