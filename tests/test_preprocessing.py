@@ -121,6 +121,32 @@ def test_preprocess_data_sample(
     )
 
 
+@pytest.mark.parametrize(("group_var", "mapping"), [
+    ("genome_id", None),
+    ("sample_id", mapping),
+    pytest.param(
+        "other",
+        None,
+        marks=pytest.mark.xfail(reason="Not implemented.")
+    ),
+    pytest.param(
+        "other",
+        mapping,
+        marks=pytest.mark.xfail(reason="Not implemented.")
+    )
+], indirect=["mapping"])
+def test_preprocess_data_group_var(
+    pathway_df: pd.DataFrame,
+    group_var: str,
+    mapping: dict
+) -> None:
+    preprocess_data(
+        df=pathway_df,
+        group_var=group_var,
+        mapping=mapping
+    )
+
+
 @pytest.mark.parametrize(("group_var", "fn_var", "mapping"), [
     ("genome_id", "function", None),
     ("sample_id", "function", mapping),
