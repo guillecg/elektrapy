@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "elektrapy"
+dynamic = ["version"]
+authors = [
+  {name="Guillermo Climent Gargallo"},
+]
+description = "elektrapy is a tool for the exploration of biotic electron flows in the environment."
+readme = "README.md"
+requires-python = ">=3.14"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0+"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://github.com/guillecg/elektrapy"
+Issues = "https://github.com/guillecg/elektrapy/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "elektrapy.__version__"}
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest]
+minversion = "9.0"
+addopts = ["-ra", "-q"]
+testpaths = [
+    "tests"
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "serial"
+]
