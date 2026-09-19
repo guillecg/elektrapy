@@ -104,3 +104,30 @@ def test_get_mean_potential_genome(
             rti_df=rti_df
         ).reset_index(drop=True)
     )
+
+
+def test_get_mean_potential_sample(
+    data_dir: str,
+    network_df_sample: pd.DataFrame,
+    redox_df: pd.DataFrame,
+    group_var: str = "sample_id"
+) -> None:
+
+    rti_df = get_redox_index(
+        network_df=network_df_sample,
+        group_var=group_var
+    )
+
+    pd.testing.assert_frame_equal(
+        left=pd.read_csv(
+            os.path.join(
+                data_dir,
+                "results",
+                f"indices-redox-{group_var.split('_')[0]}.csv"
+            )
+        ),
+        right=get_mean_potential(
+            redox_df=redox_df,
+            rti_df=rti_df
+        ).reset_index(drop=True)
+    )
