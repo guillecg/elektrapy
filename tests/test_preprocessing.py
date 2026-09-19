@@ -60,6 +60,28 @@ def results_df_sample(data_dir: str) -> pd.DataFrame:
     yield results_df
 
 
+@pytest.fixture(scope="module", autouse=True)
+def network_df_genome(data_dir: str) -> pd.DataFrame:
+    yield pd.read_csv(
+        os.path.join(
+            data_dir,
+            "results",
+            "network-genome.csv"
+        )
+    )
+
+
+@pytest.fixture(scope="module", autouse=True)
+def network_df_sample(data_dir: str) -> pd.DataFrame:
+    yield pd.read_csv(
+        os.path.join(
+            data_dir,
+            "results",
+            "network-sample.csv"
+        )
+    )
+
+
 def test_preprocess_data_genome(
     pathway_df: pd.DataFrame,
     results_df_genome: pd.DataFrame
