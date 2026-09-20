@@ -106,8 +106,8 @@ def network_df_group(
     )
 
     network_df_group = network_df_group\
-        .groupby([color_var, "source", "target"], as_index=False)\
-        ["value"].sum()
+        .groupby([color_var, "source", "target"], as_index=False)["value"]\
+        .sum()
 
     yield network_df_group
 
@@ -137,7 +137,7 @@ def node_df_sample(
 
 @pytest.fixture(scope="session", autouse=True)
 def link_color_map() -> dict:
-    yield{
+    yield {
         "surface": "#FFC349",
         "aquifer": "#97DDE9",
         "mine": "#525EA7",
