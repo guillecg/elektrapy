@@ -209,7 +209,7 @@ def test__encode_nodes(
         )
     )
     categories = CategoricalDtype(
-        categories=node_df["node"].unique(),
+        categories=node_df["node"].cat.categories,
         ordered=True
     )
     node_df_test["node"] = node_df_test["node"].astype(categories)
@@ -273,7 +273,7 @@ def test__highlight_node(
     )
 
     categories = CategoricalDtype(
-        categories=node_df["node"].unique(),
+        categories=node_df["node"].cat.categories,
         ordered=True
     )
     network_df_test["source"] = network_df_test["source"].astype(categories)
