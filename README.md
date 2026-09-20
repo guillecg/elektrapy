@@ -11,6 +11,21 @@ An example Jupyter notebook can be found in the [examples folder](examples/Examp
 # Installation
 
 Future releases of elektrapy will include its installation as a Python package.
+However, you can install it now from the source code as following:
+
+1. Clone the code repository.
+
+```bash
+git clone git@github.com:guillecg/elektrapy.git
+```
+
+2. Install elektrapy from the code repository.
+
+```bash
+cd elektrapy
+pip install .
+```
+
 For its current usage, just the installation of the following Python packages is required: ```pandas, scikit-learn, plotly, networkx```
 
 
