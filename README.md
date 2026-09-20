@@ -17,16 +17,20 @@ However, you can install it now from the source code as following:
 
 ```bash
 git clone git@github.com:guillecg/elektrapy.git
+cd elektrapy
 ```
 
-2. Install elektrapy from the code repository.
+2. Install dependencies.
 
 ```bash
-cd elektrapy
-pip install .
+pip install -r requirements.txt
 ```
 
-For its current usage, just the installation of the following Python packages is required: ```pandas, scikit-learn, plotly, networkx```
+3. Install elektrapy from the code repository.
+
+```bash
+pip install .
+```
 
 
 
