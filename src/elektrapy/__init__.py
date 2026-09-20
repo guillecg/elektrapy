@@ -6,8 +6,8 @@ PATHWAY_NODE_MAP = {
     "C-S-02:Carbon fixation": "fixation-CO2",
     "C-S-03:Ethanol oxidation": "oxidation-ethanol",
     "C-S-04:Acetate oxidation": "oxidation-acetate",
-    "C-S-05:Hydrogen generation": "reduction-H+",    # Generation of H2
-    "C-S-06:Fermentation": "reduction-H+",           # Generation of H2
+    "C-S-05:Hydrogen generation": "reduction-H+",     # Generation of H2
+    "C-S-06:Fermentation": "reduction-H+",            # Generation of H2
     "C-S-07:Methanogenesis": "oxidation-H2",
     "C-S-08:Methanotrophy": "oxidation-CH4",
     "C-S-09:Hydrogen oxidation": "oxidation-H2",
@@ -21,7 +21,7 @@ PATHWAY_NODE_MAP = {
     "N-S-07:Nitrous oxide reduction": "reduction-N2O",
     "N-S-08:Nitrite ammonification": "reduction-NO2",
     "N-S-09:Anammox": "oxidation-NH4",
-    "N-S-10:Nitric oxide dismutase": "reduction-N2", # Disproportionation
+    "N-S-10:Nitric oxide dismutase": "reduction-N2",  # Disproportionation
     "O-S-01:Iron reduction": "reduction-Fe3+",
     "O-S-02:Iron oxidation": "oxidation-Fe2+",
     "O-S-03:Arsenate reduction": "reduction-AsO4",
