@@ -17,11 +17,11 @@ def test_get_redox_index_genome(
                 "results",
                 f"indices-rti-{group_var.split('_')[0]}.csv"
             )
-        ),
+        ).sort_values("node").reset_index(drop=True),
         right=get_redox_index(
             network_df=network_df_genome,
             group_var=group_var
-        ).reset_index(drop=True)
+        ).sort_values("node").reset_index(drop=True)
     )
 
 
@@ -37,11 +37,11 @@ def test_get_redox_index_sample(
                 "results",
                 f"indices-rti-{group_var.split('_')[0]}.csv"
             )
-        ),
+        ).sort_values("node").reset_index(drop=True),
         right=get_redox_index(
             network_df=network_df_sample,
             group_var=group_var
-        ).reset_index(drop=True)
+        ).sort_values("node").reset_index(drop=True)
     )
 
 
@@ -64,11 +64,11 @@ def test_get_mean_potential_genome(
                 "results",
                 f"indices-redox-{group_var.split('_')[0]}.csv"
             )
-        ),
+        ).sort_values("node").reset_index(drop=True),
         right=get_mean_potential(
             redox_df=redox_df,
             rti_df=rti_df
-        ).reset_index(drop=True)
+        ).sort_values("node").reset_index(drop=True)
     )
 
 
@@ -91,9 +91,9 @@ def test_get_mean_potential_sample(
                 "results",
                 f"indices-redox-{group_var.split('_')[0]}.csv"
             )
-        ),
+        ).sort_values("node").reset_index(drop=True),
         right=get_mean_potential(
             redox_df=redox_df,
             rti_df=rti_df
-        ).reset_index(drop=True)
+        ).sort_values("node").reset_index(drop=True)
     )
