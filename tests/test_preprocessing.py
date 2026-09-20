@@ -9,8 +9,7 @@ from elektrapy.preprocessing import (
     get_network_df,
     _get_transposed,
     _map_sample_genome,
-    _get_grouped_counts,
-    _get_nodes_inferred
+    _get_grouped_counts
 )
 
 

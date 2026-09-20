@@ -1,5 +1,3 @@
-import pytest
-
 import os
 
 import pandas as pd
@@ -7,7 +5,7 @@ from pandas.api.types import CategoricalDtype
 
 import plotly.graph_objects as go
 
-from elektrapy import PATHWAY_NODE_MAP, NODE_CYCLE_MAP, CYCLE_COLOR_MAP
+from elektrapy import CYCLE_COLOR_MAP
 from elektrapy.efd import (
     get_node_df,
     get_efd,
