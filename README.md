@@ -1,3 +1,6 @@
+[![Python package](https://github.com/guillecg/elektrapy/actions/workflows/python-package.yml/badge.svg)](https://github.com/guillecg/elektrapy/actions/workflows/python-package.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 # elektrapy
 
 elektrapy is a tool for the exploration of biotic electron flows in the environment.
