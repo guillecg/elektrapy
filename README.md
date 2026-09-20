@@ -11,7 +11,7 @@ An example Jupyter notebook can be found in the [examples folder](examples/Examp
 
 
 
-# Installation
+## Installation
 
 Future releases of elektrapy will include its installation as a Python package.
 However, you can install it now from the source code as following:
@@ -37,7 +37,7 @@ pip install .
 
 
 
-# Citation
+## Citation
 
 The initial idea for visualizing electron flows in the environment was presented at Goldschmidt 2025, please cite as:
 
@@ -55,12 +55,12 @@ Climent Gargallo, G. (2026). elektrapy: A tool for the exploration of biotic ele
 
 
 
-# References
+## References
 
 Belcour, A., Megy, L., Stephant, S., Michel, C., Rad, S., Bombach, P., Dopffel, N., De Jong, H., & Ropers, D. (2025). Predicting coarse-grained representations of biogeochemical cycles from metabarcoding data. Bioinformatics, 41(Supplement_1), i49–i57. https://doi.org/10.1093/bioinformatics/btaf230
 
 
 
-# Funding
+## Funding
 
 This project has received funding from the European Union’s Horizon Europe Research and Innovation programme under the Marie Skłodowska-Curie Grant Agreement No. 101073271 - [SHINE project](https://www.shine-edn.eu/).
