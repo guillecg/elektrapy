@@ -251,7 +251,7 @@ def _get_node_colors(
     return node_colors
 
 
-def _scale_nodes(node_df: pd.dataframe) -> pd.DataFrame:
+def _scale_nodes(node_df: pd.DataFrame) -> pd.DataFrame:
 
     # Manually add minimum and maximum to force the range before scaling
     node_df = pd.concat([
