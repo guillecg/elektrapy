@@ -100,7 +100,7 @@ def test_preprocess_data_fn_var(
     fn_var: str,
     mapping: dict
 ) -> None:
-    results_df_genome = preprocess_data(
+    preprocess_data(
         df=pathway_df,
         group_var=group_var,
         fn_var=fn_var,
