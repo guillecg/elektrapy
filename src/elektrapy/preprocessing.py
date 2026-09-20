@@ -12,7 +12,7 @@ def preprocess_data(
     mapping: dict = None
 ) -> pd.DataFrame:
     """
-    Main function for preprocessing functional annotation data (bigecyhmm) 
+    Main function for preprocessing functional annotation data (bigecyhmm)
     and yield a formatted dataframe that can be used in electron flow diagrams.
     """
 
@@ -69,7 +69,7 @@ def get_network_df(
 
 def _get_transposed(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Auxiliary function for transposing the original count dataframe to get 
+    Auxiliary function for transposing the original count dataframe to get
     genomes (index) per function (columns).
     """
     return df\
@@ -99,7 +99,7 @@ def _get_grouped_counts(
     group_var: str
 ) -> pd.DataFrame:
     """
-    Auxiliary function for grouping the counts according to either genome or 
+    Auxiliary function for grouping the counts according to either genome or
     sample IDs.
     """
     return df\
@@ -112,7 +112,7 @@ def _get_nodes_inferred(
     group_var: str
 ) -> pd.DataFrame:
     """
-    Auxiliary function for parsing the network dataframe and getting both the 
+    Auxiliary function for parsing the network dataframe and getting both the
     source and target nodes as well as their corresponding biogeochemical cycle.
     The nodes are inferred according to the presence of oxidation and reduction
     reactions.
