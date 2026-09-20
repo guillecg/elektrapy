@@ -10,7 +10,7 @@ authors = [
 ]
 description = "elektrapy is a tool for the exploration of biotic electron flows in the environment."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
