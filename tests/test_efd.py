@@ -274,11 +274,10 @@ def test__highlight_node(
     network_df_test["source"] = network_df_test["source"].astype(categories)
     network_df_test["target"] = network_df_test["target"].astype(categories)
 
+    network_df_test = network_df_test.sort_values(["target", "type"])
+    network_df = network_df.sort_values(["target", "type"])
+
     pd.testing.assert_frame_equal(
-        left=network_df_test\
-            .reset_index(drop=True)\
-            .sort_values(["target", "type"]),
-        right=network_df\
-            .reset_index(drop=True)\
-            .sort_values(["target", "type"])
+        left=network_df_test.reset_index(drop=True),
+        right=network_df.reset_index(drop=True)
     )
