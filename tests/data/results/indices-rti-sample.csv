@@ -1,0 +1,25 @@
+node,redox_index
+organic carbon,-1.0
+acetate,-1.0
+S2O3,-1.0
+H2,-0.75
+ethanol,-0.5
+H2S,-0.5
+NH4,-0.5
+Fe2+,-0.5
+AsO3,-0.25
+S0,-0.25
+CH4,-0.25
+SO3,0.0
+N2O,0.25
+AsO4,0.25
+NO,0.25
+SeO4,0.25
+N2,0.5
+SO4,0.5
+Fe3+,0.75
+NO3,0.75
+NO2,0.75
+CO2,0.75
+H+,1.0
+O2,1.0

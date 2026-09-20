@@ -1,0 +1,209 @@
+genome_id,source,target,value
+MAG-1,organic carbon,O2,1
+MAG-1,organic carbon,H+,1
+MAG-1,organic carbon,NO2,1
+MAG-1,organic carbon,Fe3+,1
+MAG-1,H2,O2,1
+MAG-1,H2,H+,1
+MAG-1,H2,NO2,1
+MAG-1,H2,Fe3+,1
+MAG-10,CH4,NO3,1
+MAG-10,CH4,NO2,1
+MAG-10,CH4,Fe3+,1
+MAG-10,CH4,NO,1
+MAG-10,CH4,O2,1
+MAG-10,CH4,H+,1
+MAG-10,CH4,CO2,1
+MAG-10,Fe2+,NO3,1
+MAG-10,Fe2+,NO2,1
+MAG-10,Fe2+,Fe3+,1
+MAG-10,Fe2+,NO,1
+MAG-10,Fe2+,O2,1
+MAG-10,Fe2+,H+,1
+MAG-10,Fe2+,CO2,1
+MAG-10,S2O3,NO3,1
+MAG-10,S2O3,NO2,1
+MAG-10,S2O3,Fe3+,1
+MAG-10,S2O3,NO,1
+MAG-10,S2O3,O2,1
+MAG-10,S2O3,H+,1
+MAG-10,S2O3,CO2,1
+MAG-10,ethanol,NO3,1
+MAG-10,ethanol,NO2,1
+MAG-10,ethanol,Fe3+,1
+MAG-10,ethanol,NO,1
+MAG-10,ethanol,O2,1
+MAG-10,ethanol,H+,1
+MAG-10,ethanol,CO2,1
+MAG-10,S0,NO3,1
+MAG-10,S0,NO2,1
+MAG-10,S0,Fe3+,1
+MAG-10,S0,NO,1
+MAG-10,S0,O2,1
+MAG-10,S0,H+,1
+MAG-10,S0,CO2,1
+MAG-10,acetate,NO3,1
+MAG-10,acetate,NO2,1
+MAG-10,acetate,Fe3+,1
+MAG-10,acetate,NO,1
+MAG-10,acetate,O2,1
+MAG-10,acetate,H+,1
+MAG-10,acetate,CO2,1
+MAG-10,organic carbon,NO3,1
+MAG-10,organic carbon,NO2,1
+MAG-10,organic carbon,Fe3+,1
+MAG-10,organic carbon,NO,1
+MAG-10,organic carbon,O2,1
+MAG-10,organic carbon,H+,1
+MAG-10,organic carbon,CO2,1
+MAG-11,S2O3,H+,1
+MAG-11,S2O3,NO2,1
+MAG-11,S2O3,CO2,1
+MAG-11,S2O3,Fe3+,1
+MAG-11,S2O3,NO,1
+MAG-11,organic carbon,H+,1
+MAG-11,organic carbon,NO2,1
+MAG-11,organic carbon,CO2,1
+MAG-11,organic carbon,Fe3+,1
+MAG-11,organic carbon,NO,1
+MAG-12,S2O3,NO2,1
+MAG-12,S2O3,CO2,1
+MAG-12,S2O3,NO3,1
+MAG-12,S2O3,H+,1
+MAG-12,S0,NO2,1
+MAG-12,S0,CO2,1
+MAG-12,S0,NO3,1
+MAG-12,S0,H+,1
+MAG-2,H2,CO2,1
+MAG-2,H2,O2,1
+MAG-2,H2,H+,1
+MAG-2,organic carbon,CO2,1
+MAG-2,organic carbon,O2,1
+MAG-2,organic carbon,H+,1
+MAG-3,H2S,S0,1
+MAG-3,H2S,SO3,1
+MAG-3,H2S,SO4,1
+MAG-3,H2S,H+,1
+MAG-3,H2S,NO2,1
+MAG-3,H2S,NO3,1
+MAG-3,S2O3,S0,1
+MAG-3,S2O3,SO3,1
+MAG-3,S2O3,SO4,1
+MAG-3,S2O3,H+,1
+MAG-3,S2O3,NO2,1
+MAG-3,S2O3,NO3,1
+MAG-3,SO3,S0,1
+MAG-3,SO3,SO4,1
+MAG-3,SO3,H+,1
+MAG-3,SO3,NO2,1
+MAG-3,SO3,NO3,1
+MAG-3,S0,SO3,1
+MAG-3,S0,SO4,1
+MAG-3,S0,H+,1
+MAG-3,S0,NO2,1
+MAG-3,S0,NO3,1
+MAG-3,acetate,S0,1
+MAG-3,acetate,SO3,1
+MAG-3,acetate,SO4,1
+MAG-3,acetate,H+,1
+MAG-3,acetate,NO2,1
+MAG-3,acetate,NO3,1
+MAG-3,organic carbon,S0,1
+MAG-3,organic carbon,SO3,1
+MAG-3,organic carbon,SO4,1
+MAG-3,organic carbon,H+,1
+MAG-3,organic carbon,NO2,1
+MAG-3,organic carbon,NO3,1
+MAG-3,ethanol,S0,1
+MAG-3,ethanol,SO3,1
+MAG-3,ethanol,SO4,1
+MAG-3,ethanol,H+,1
+MAG-3,ethanol,NO2,1
+MAG-3,ethanol,NO3,1
+MAG-4,H2,NO2,1
+MAG-4,organic carbon,NO2,1
+MAG-4,AsO3,NO2,1
+MAG-5,S2O3,S0,1
+MAG-5,S2O3,H+,1
+MAG-5,S2O3,N2O,1
+MAG-5,acetate,S0,1
+MAG-5,acetate,H+,1
+MAG-5,acetate,N2O,1
+MAG-5,organic carbon,S0,1
+MAG-5,organic carbon,H+,1
+MAG-5,organic carbon,N2O,1
+MAG-6,H2,NO2,1
+MAG-6,H2,SeO4,1
+MAG-6,H2,O2,1
+MAG-6,H2,NO3,1
+MAG-6,H2,N2,1
+MAG-6,NH4,NO2,1
+MAG-6,NH4,SeO4,1
+MAG-6,NH4,O2,1
+MAG-6,NH4,NO3,1
+MAG-6,NH4,N2,1
+MAG-6,organic carbon,NO2,1
+MAG-6,organic carbon,SeO4,1
+MAG-6,organic carbon,O2,1
+MAG-6,organic carbon,NO3,1
+MAG-6,organic carbon,N2,1
+MAG-7,SO3,CO2,1
+MAG-7,SO3,SO4,1
+MAG-7,SO3,N2,1
+MAG-7,SO3,Fe3+,1
+MAG-7,S0,CO2,1
+MAG-7,S0,SO4,1
+MAG-7,S0,N2,1
+MAG-7,S0,Fe3+,1
+MAG-7,NH4,CO2,1
+MAG-7,NH4,SO4,1
+MAG-7,NH4,N2,1
+MAG-7,NH4,Fe3+,1
+MAG-7,Fe2+,CO2,1
+MAG-7,Fe2+,SO4,1
+MAG-7,Fe2+,N2,1
+MAG-7,Fe2+,Fe3+,1
+MAG-7,S2O3,CO2,1
+MAG-7,S2O3,SO4,1
+MAG-7,S2O3,N2,1
+MAG-7,S2O3,Fe3+,1
+MAG-8,organic carbon,CO2,1
+MAG-8,organic carbon,N2,1
+MAG-8,organic carbon,O2,1
+MAG-8,organic carbon,H+,1
+MAG-8,H2S,CO2,1
+MAG-8,H2S,N2,1
+MAG-8,H2S,O2,1
+MAG-8,H2S,H+,1
+MAG-8,NO2,CO2,1
+MAG-8,NO2,N2,1
+MAG-8,NO2,O2,1
+MAG-8,NO2,H+,1
+MAG-9,H2,SO4,1
+MAG-9,H2,H+,1
+MAG-9,H2,NO2,1
+MAG-9,H2,O2,1
+MAG-9,H2,AsO4,1
+MAG-9,H2,Fe3+,1
+MAG-9,H2,SO3,1
+MAG-9,acetate,SO4,1
+MAG-9,acetate,H+,1
+MAG-9,acetate,NO2,1
+MAG-9,acetate,O2,1
+MAG-9,acetate,AsO4,1
+MAG-9,acetate,Fe3+,1
+MAG-9,acetate,SO3,1
+MAG-9,organic carbon,SO4,1
+MAG-9,organic carbon,H+,1
+MAG-9,organic carbon,NO2,1
+MAG-9,organic carbon,O2,1
+MAG-9,organic carbon,AsO4,1
+MAG-9,organic carbon,Fe3+,1
+MAG-9,organic carbon,SO3,1
+MAG-9,Fe2+,SO4,1
+MAG-9,Fe2+,H+,1
+MAG-9,Fe2+,NO2,1
+MAG-9,Fe2+,O2,1
+MAG-9,Fe2+,AsO4,1
+MAG-9,Fe2+,Fe3+,1
+MAG-9,Fe2+,SO3,1

@@ -1,0 +1,41 @@
+function	MAG-1	MAG-2	MAG-3	MAG-4	MAG-5	MAG-6	MAG-7	MAG-8	MAG-9	MAG-10	MAG-11	MAG-12
+C-S-01:Organic carbon oxidation	1	1	1	1	1	1	0	1	1	1	1	0
+C-S-02:Carbon fixation	0	1	0	0	0	0	1	1	0	1	1	1
+C-S-03:Ethanol oxidation	0	0	1	0	0	0	0	0	0	1	0	0
+C-S-04:Acetate oxidation	0	0	1	0	1	0	0	0	1	1	0	0
+C-S-05:Hydrogen generation	0	1	1	0	0	0	0	0	0	0	0	0
+C-S-06:Fermentation	1	1	0	0	1	0	0	1	1	1	1	1
+C-S-07:Methanogenesis	1	0	0	0	0	0	0	0	0	0	0	0
+C-S-08:Methanotrophy	0	0	0	0	0	0	0	0	0	1	0	0
+C-S-09:Hydrogen oxidation	1	1	0	0	0	1	0	0	1	0	0	0
+C-S-10:Acetogenesis WL	0	0	0	1	0	1	0	0	1	0	0	0
+N-S-01:Nitrogen fixation	0	0	0	0	0	1	1	1	0	0	0	0
+N-S-02:Ammonia oxidation	0	0	0	0	0	0	1	0	0	0	0	0
+N-S-03:Nitrite oxidation	0	0	0	0	0	0	0	1	0	0	0	0
+N-S-04:Nitrate reduction	0	0	1	0	0	1	0	0	0	1	0	1
+N-S-05:Nitrite reduction	0	0	1	1	0	0	0	0	0	0	0	0
+N-S-06:Nitric oxide reduction	0	0	0	0	0	0	0	0	0	1	1	0
+N-S-07:Nitrous oxide reduction	0	0	0	0	1	0	0	0	0	0	0	0
+N-S-08:Nitrite ammonification	1	0	0	0	0	1	0	0	1	1	1	1
+N-S-09:Anammox	0	0	0	0	0	1	0	0	0	0	0	0
+N-S-10:Nitric oxide dismutase	0	0	0	0	0	0	0	1	0	0	0	0
+O-S-01:Iron reduction	1	0	0	0	0	0	1	0	1	1	1	0
+O-S-02:Iron oxidation	0	0	0	0	0	0	1	0	1	1	0	0
+O-S-03:Arsenate reduction	0	0	0	0	0	0	0	0	1	0	0	0
+O-S-04:Arsenite oxidation	0	0	0	1	0	0	0	0	0	0	0	0
+O-S-05:Selenate reduction	0	0	0	0	0	1	0	0	0	0	0	0
+O-S-06:Aerobic respiration	1	1	0	0	0	1	0	1	1	1	0	0
+P-S-01:Immobilisation (P-poor)	1	0	0	0	1	1	0	0	0	1	0	0
+P-S-01:Immobilisation (P-rich)	0	0	0	0	0	0	0	1	0	0	0	0
+P-S-02:Mineralisation	1	1	0	0	1	0	0	0	1	1	0	1
+P-S-03:Dissolution	1	1	0	1	0	0	0	0	0	1	0	0
+S-S-01:Sulfide oxidation	0	0	1	0	0	0	0	1	0	0	0	0
+S-S-02:Sulfur reduction	0	0	1	0	1	0	0	0	0	0	0	0
+S-S-03:Sulfur oxidation	0	0	1	0	0	0	1	0	0	1	0	1
+S-S-04:Sulfite oxidation	0	0	2	0	0	0	1	0	0	0	0	0
+S-S-05:Sulfate reduction	0	0	3	0	0	0	1	0	1	0	0	0
+S-S-06:Sulfite reduction	0	0	4	0	0	0	0	0	1	0	0	0
+S-S-07:Thiosulfate oxidation	0	0	5	0	0	0	1	0	0	1	1	1
+S-S-08:Thiosulfate disproportionation 1	0	0	6	0	1	0	0	0	0	0	0	0
+S-S-09:Thiosulfate disproportionation 2	0	0	7	0	0	0	0	0	0	0	0	0
+S-S-10:Polysulfide reduction	0	0	8	0	0	0	0	0	0	0	0	0

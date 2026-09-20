@@ -1,0 +1,13 @@
+C-S-01:Organic carbon oxidation,C-S-02:Carbon fixation,C-S-03:Ethanol oxidation,C-S-04:Acetate oxidation,C-S-05:Hydrogen generation,C-S-06:Fermentation,C-S-07:Methanogenesis,C-S-08:Methanotrophy,C-S-09:Hydrogen oxidation,C-S-10:Acetogenesis WL,N-S-01:Nitrogen fixation,N-S-02:Ammonia oxidation,N-S-03:Nitrite oxidation,N-S-04:Nitrate reduction,N-S-05:Nitrite reduction,N-S-06:Nitric oxide reduction,N-S-07:Nitrous oxide reduction,N-S-08:Nitrite ammonification,N-S-09:Anammox,N-S-10:Nitric oxide dismutase,O-S-01:Iron reduction,O-S-02:Iron oxidation,O-S-03:Arsenate reduction,O-S-04:Arsenite oxidation,O-S-05:Selenate reduction,O-S-06:Aerobic respiration,P-S-01:Immobilisation (P-poor),P-S-01:Immobilisation (P-rich),P-S-02:Mineralisation,P-S-03:Dissolution,S-S-01:Sulfide oxidation,S-S-02:Sulfur reduction,S-S-03:Sulfur oxidation,S-S-04:Sulfite oxidation,S-S-05:Sulfate reduction,S-S-06:Sulfite reduction,S-S-07:Thiosulfate oxidation,S-S-08:Thiosulfate disproportionation 1,S-S-09:Thiosulfate disproportionation 2,S-S-10:Polysulfide reduction,sample_id
+1,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,SAMPLE-1
+1,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,SAMPLE-1
+1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,3,4,5,6,7,8,SAMPLE-1
+1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,SAMPLE-2
+1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0,0,SAMPLE-2
+1,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,SAMPLE-2
+0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,SAMPLE-3
+1,1,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,SAMPLE-3
+1,0,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0,1,1,0,0,0,0,SAMPLE-3
+1,1,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,0,0,1,1,0,0,0,1,1,0,1,1,0,0,1,0,0,0,1,0,0,0,SAMPLE-4
+1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,SAMPLE-4
+0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,SAMPLE-4

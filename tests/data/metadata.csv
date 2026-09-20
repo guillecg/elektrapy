@@ -1,0 +1,13 @@
+genome_id,sample_id,type,depth
+MAG-1,SAMPLE-1,aquifer,120
+MAG-2,SAMPLE-1,aquifer,120
+MAG-3,SAMPLE-1,aquifer,120
+MAG-4,SAMPLE-2,mine,850
+MAG-5,SAMPLE-2,mine,850
+MAG-6,SAMPLE-2,mine,850
+MAG-7,SAMPLE-3,reservoir,1250
+MAG-8,SAMPLE-3,reservoir,1250
+MAG-9,SAMPLE-3,reservoir,1250
+MAG-10,SAMPLE-4,surface,0
+MAG-11,SAMPLE-4,surface,0
+MAG-12,SAMPLE-4,surface,0
