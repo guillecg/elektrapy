@@ -1,18 +1,15 @@
 from typing import List
 
-import os
-
 import pandas as pd
 from pandas.api.types import CategoricalDtype
 
-import plotly
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.colors import hex_to_rgb
 
 from sklearn.preprocessing import minmax_scale
 
-from elektrapy import PATHWAY_NODE_MAP, NODE_CYCLE_MAP, CYCLE_COLOR_MAP
+from elektrapy import NODE_CYCLE_MAP, CYCLE_COLOR_MAP
 from elektrapy.indices import get_redox_index, get_mean_potential
 
 
