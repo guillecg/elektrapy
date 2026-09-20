@@ -30,12 +30,12 @@ def test_get_node_df_genome(
                 "results",
                 f"nodes-{group_var.split('_')[0]}.csv"
             )
-        ).sort_values("node"),
+        ).sort_values("node").reset_index(drop=True),
         right=get_node_df(
             network_df=network_df_genome,
             redox_df=redox_df,
             group_var=group_var
-        ).sort_values("node"),
+        ).sort_values("node").reset_index(drop=True),
         check_like=True
     )
 
@@ -53,12 +53,12 @@ def test_get_node_df_sample(
                 "results",
                 f"nodes-{group_var.split('_')[0]}.csv"
             )
-        ).sort_values("node"),
+        ).sort_values("node").reset_index(drop=True),
         right=get_node_df(
             network_df=network_df_sample,
             redox_df=redox_df,
             group_var=group_var
-        ).sort_values("node"),
+        ).sort_values("node").reset_index(drop=True),
         check_like=True
     )
 
@@ -128,8 +128,8 @@ def test__get_node_colors_sample(
                 "results",
                 f"nodes-color-{color_var}.csv"
             )
-        ).sort_values("node"),
-        right=node_df.sort_values("node"),
+        ).sort_values("node").reset_index(drop=True),
+        right=node_df.sort_values("node").reset_index(drop=True),
         check_like=True
     )
 
@@ -164,8 +164,8 @@ def test__scale_nodes(
                 "results",
                 f"nodes-scale-{color_var}.csv"
             )
-        ).sort_values("node"),
-        right=node_df.sort_values("node"),
+        ).sort_values("node").reset_index(drop=True),
+        right=node_df.sort_values("node").reset_index(drop=True),
         check_like=True
     )
 
@@ -215,8 +215,8 @@ def test__encode_nodes(
     node_df_test["node"] = node_df_test["node"].astype(categories)
 
     pd.testing.assert_frame_equal(
-        left=node_df_test.sort_values("node"),
-        right=node_df.sort_values("node"),
+        left=node_df_test.sort_values("node").reset_index(drop=True),
+        right=node_df.sort_values("node").reset_index(drop=True),
         check_like=True
     )
 
