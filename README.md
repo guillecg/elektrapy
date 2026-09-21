@@ -53,7 +53,7 @@ Climent Gargallo, G., De Pins, B., Moracci, M., & Edlmann, K. (2026). Disentangl
 
 The elektrapy package can be cited as:
 
-Climent Gargallo, G. (2026). elektrapy: A tool for the exploration of biotic electron flows in the environment (Version 0.1.0) [Computer software]. https://github.com/guillecg/elektrapy
+Climent Gargallo, G. (2026). elektrapy: A tool for the exploration of biotic electron flows in the environment (Version 0.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/ZENODO.22868947
 
 
 
